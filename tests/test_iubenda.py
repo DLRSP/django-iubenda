@@ -6,7 +6,7 @@ from django.test import TestCase
 LOGGER = logging.getLogger(name="django-iubenda")
 
 
-class ErrorsTestCase(TestCase):
+class IubendaTestCase(TestCase):
     """Test Case for django-iubenda"""
 
     def setUp(self):
