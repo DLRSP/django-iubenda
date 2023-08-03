@@ -1,0 +1,16 @@
+<p class="text-center">
+    <i>
+        <!--Privacy Policy -->
+        <a href="{% url 'privacy' %}" class="iubenda-black no-brand iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a>
+    -
+        <!--Cookie Policy-->
+        <a href="{% url 'cookie' %}" class="iubenda-black no-brand iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a>
+    </i>
+</p>
+
+<!-- JS Cookie Solution -->
+<script type="text/javascript" {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>var _iub = _iub || [];_iub.csConfiguration = {"ccpaAcknowledgeOnDisplay":true,"ccpaApplies":true,"consentOnContinuedBrowsing":false,"enableCcpa":true,"floatingPreferencesButtonDisplay":"bottom-left","invalidateConsentWithoutLog":true,"perPurposeConsent":true,"siteId":{{ cx_iubenda.iub_site_id }},"whitelabel":false,"cookiePolicyId":{{ cx_iubenda.iub_policy_id }},"lang":"{{ LANGUAGE_CODE }}", "banner":{ "acceptButtonDisplay":true,"backgroundOverlay":true,"closeButtonRejects":true,"customizeButtonDisplay":true,"explicitWithdrawal":true,"fontSize":"14px","listPurposes":true,"position":"float-center","rejectButtonDisplay":true }};</script>
+
+<!-- JS Iubenda -->
+<script type="text/javascript" src="https://cdn.iubenda.com/cs/ccpa/stub.js"></script>
+<script type="text/javascript" src="https://cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>

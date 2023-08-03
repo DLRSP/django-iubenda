@@ -1,0 +1,14 @@
+[
+{
+    "model": "iubenda.iubenda",
+    "pk": 1,
+    "fields": {
+        "site": 1,
+        "iub_site_id": 1000000,
+        "iub_policy_id": 10000000,
+        "iub_policy_id_it": 10000000,
+        "iub_policy_id_en": 10000000,
+        "active": false
+    }
+}
+]
