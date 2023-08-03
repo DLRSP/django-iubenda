@@ -18,6 +18,10 @@ def delete_data(apps, schema_editor):
 class Migration(migrations.Migration):
     initial = True
 
+    dependencies = [
+        ("sites", "0001_initial"),
+    ]
+
     operations = [
         migrations.CreateModel(
             name="Iubenda",
@@ -66,5 +70,5 @@ class Migration(migrations.Migration):
                 "verbose_name_plural": "Iubenda Policies",
             },
         ),
-        migrations.RunPython(load_data_from_fixture, delete_data),
+        # migrations.RunPython(load_data_from_fixture, delete_data),
     ]
