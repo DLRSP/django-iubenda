@@ -1,12 +1,12 @@
 """Unit Tests for the module"""
 import logging
 
-from django.test import TestCase
+from django.test import TransactionTestCase
 
 LOGGER = logging.getLogger(name="django-iubenda")
 
 
-class IubendaTestCase(TestCase):
+class IubendaTestCase(TransactionTestCase):
     """Test Case for django-iubenda"""
 
     def setUp(self):
