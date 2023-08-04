@@ -52,4 +52,3 @@ class IubendaTestCase(TransactionTestCase):
         LOGGER.debug(response)
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, "iubenda/cookie.html")
-

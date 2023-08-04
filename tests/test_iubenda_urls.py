@@ -1,10 +1,7 @@
 """Unit Tests for the module"""
 import logging
 
-# import pytest
-# from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
-from django.test import TestCase, TransactionTestCase
+from django.test import TransactionTestCase
 
 LOGGER = logging.getLogger(name="django-iubenda")
 
