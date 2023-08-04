@@ -16,16 +16,15 @@ from .models import Iubenda
 @vary_on_headers("User-Agent", "Cookie")
 def privacy(request):
     context = {}
+    context_cache = {}
 
     cache_key = f"api_iubenda_privacy_{request.LANGUAGE_CODE}"
-    context_cache = None
     try:
         context_cache = cache.get(cache_key)
     except Exception as err:
         messages.warning(request, err)
-        context_cache = None
 
-    if context_cache is None:
+    if not context_cache or context_cache is None:
         try:
             iubenda = (
                 Iubenda.objects.filter(site=Site.objects.get_current())
@@ -38,7 +37,9 @@ def privacy(request):
             )
             if r.status_code == 200:
                 context = {"req_privacy": json.loads(r.content)}
-            context_cache = cache.set(cache_key, context, timeout=86400)
+
+            cache.set(cache_key, context, timeout=86400)
+            context_cache = cache.get(cache_key)
 
         except Exception as err:
             messages.error(request, err)
@@ -51,16 +52,15 @@ def privacy(request):
 @vary_on_headers("User-Agent", "Cookie")
 def cookie(request):
     context = {}
+    context_cache = {}
 
     cache_key = f"api_iubenda_cookie_{request.LANGUAGE_CODE}"
-    context_cache = None
     try:
         context_cache = cache.get(cache_key)
     except Exception as err:
         messages.warning(request, err)
-        context_cache = None
 
-    if context_cache is None:
+    if not context_cache or context_cache is None:
         try:
             iubenda = (
                 Iubenda.objects.filter(site=Site.objects.get_current())
