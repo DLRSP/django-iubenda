@@ -19,6 +19,13 @@ class IubendaTestCase(TransactionTestCase):
         """Remove Test Data"""
         LOGGER.debug("Tests tearDown")
 
+    def test_sitemap(self):
+        """Test that render sitemap.xml."""
+        LOGGER.debug("Render Sitemap")
+        response = self.client.get("/it/sitemap.xml", follow=True)
+        LOGGER.debug(response)
+        self.assertEqual(200, response.status_code)
+
     def test_privacy_urls(self):
         """Test that render Privacy page."""
         LOGGER.debug("Render Privacy page")

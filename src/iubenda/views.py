@@ -40,11 +40,10 @@ def privacy(request):
                 context = {"req_privacy": json.loads(r.content)}
             context_cache = cache.set(cache_key, context, timeout=86400)
 
-            if getattr(settings, "IUBENDA_USE_COMPRESS", True):
-                return render(request, "iubenda/privacy-compress.html", context)
-            return render(request, "iubenda/privacy.html", context)
         except Exception as err:
             messages.error(request, err)
+    if getattr(settings, "IUBENDA_USE_COMPRESS", True):
+        return render(request, "iubenda/privacy-compress.html", context_cache)
     return render(request, "iubenda/privacy.html", context_cache)
 
 
