@@ -1,6 +1,7 @@
 import json
 
 import requests
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.sites.models import Site
 from django.core.cache import cache
@@ -38,6 +39,9 @@ def privacy(request):
             if r.status_code == 200:
                 context = {"req_privacy": json.loads(r.content)}
             context_cache = cache.set(cache_key, context, timeout=86400)
+
+            if getattr(settings, "IUBENDA_USE_COMPRESS", True):
+                return render(request, "iubenda/privacy-compress.html", context)
             return render(request, "iubenda/privacy.html", context)
         except Exception as err:
             messages.error(request, err)
@@ -70,8 +74,12 @@ def cookie(request):
             )
             if r.status_code == 200:
                 context = {"req_cookie": json.loads(r.content)}
-            context_cache = cache.set(cache_key, context, timeout=86400)
-            return render(request, "iubenda/cookie.html", context)
+
+            cache.set(cache_key, context, timeout=86400)
+            context_cache = cache.get(cache_key)
+
         except Exception as err:
             messages.error(request, err)
+    if getattr(settings, "IUBENDA_USE_COMPRESS", True):
+        return render(request, "iubenda/cookie-compress.html", context_cache)
     return render(request, "iubenda/cookie.html", context_cache)

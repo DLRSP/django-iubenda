@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n static %}
+{% load i18n static compress %}
 
 {% block head_canonical %}
     <link href="{{ SITE_URL }}{{ request.get_full_path }}" rel="canonical">
@@ -7,21 +7,24 @@
 
 {% block itemtype %}{% endblock itemtype %}
 
-{% block extra_title %} - Cookie Policy{% endblock extra_title %}
+{% block extra_title %} - Privacy Policy{% endblock extra_title %}
 
 {% block content %}
-<section id="cookie">
+<section id="privacy">
   <div class="wrapper light-wrapper">
     <div class="container inner">
       <div class="row">
-        {% if req_cookie %}
+        {% if req_privacy %}
           {% block css %}
+        	{% compress css file iubenda %}
             <link rel="stylesheet" type="text/css" href="{% static 'iubenda/css/iubenda_policy.css' %}">
+        	{% endcompress %}
           {% endblock css %}
 
-          {{ req_cookie.content | safe }}
+          {{ req_privacy.content | safe }}
         {% else %}
-          <a href="https://www.iubenda.com/privacy-policy/{{ cx_iubenda.iub_policy_id }}/cookie-policy" class="iubenda-black no-brand iubenda-noiframe iubenda-embed iubenda-noiframe iub-body-embed" title="Cookie Policy">Cookie Policy</a>
+          <!-- Could be added as class: "iub-legal-only" -->
+          <a href="https://www.iubenda.com/privacy-policy/{{ cx_iubenda.iub_policy_id }}" class="iubenda-black no-brand iubenda-noiframe iubenda-embed iubenda-noiframe iub-body-embed" title="Privacy Policy">Privacy Policy</a>
 
           {% block js %}
           <script type="text/javascript" {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
@@ -34,5 +37,5 @@
   </div>
   <!-- /.wrapper -->
 </section>
-<!-- /#cookie -->
+<!-- /#privacy -->
 {% endblock content %}

@@ -11,5 +11,5 @@ include CODEOWNERS
 recursive-include requirements *.in *.txt
 recursive-exclude requirements *.py
 recursive-include src *.py *.html *.css *.js *.po *.mo *.gif *.png *.json
-recursive-include tests *.py
+recursive-include tests *.py *.json
 recursive-exclude docs *

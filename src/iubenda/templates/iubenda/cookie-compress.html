@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n static %}
+{% load i18n static compress %}
 
 {% block head_canonical %}
     <link href="{{ SITE_URL }}{{ request.get_full_path }}" rel="canonical">
@@ -16,7 +16,9 @@
       <div class="row">
         {% if req_cookie %}
           {% block css %}
+        	{% compress css file iubenda %}
             <link rel="stylesheet" type="text/css" href="{% static 'iubenda/css/iubenda_policy.css' %}">
+        	{% endcompress %}
           {% endblock css %}
 
           {{ req_cookie.content | safe }}
