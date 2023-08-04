@@ -20,7 +20,7 @@ class IubendaTestCase(TransactionTestCase):
         LOGGER.debug("Tests tearDown")
 
     def test_privacy_template_with_compress(self):
-        """Test that render Privacy page."""
+        """Test that render Privacy page using compress."""
         LOGGER.debug("Render Privacy page")
         response = self.client.get("/privacy-policy/", follow=True)
         LOGGER.debug(response)
@@ -28,7 +28,7 @@ class IubendaTestCase(TransactionTestCase):
         self.assertTemplateUsed(response, "iubenda/privacy-compress.html")
 
     def test_cookie_template_with_compress(self):
-        """Test that render Cookie page."""
+        """Test that render Cookie page using compress."""
         LOGGER.debug("Render Cookie page")
         response = self.client.get("/cookie-policy/", follow=True)
         LOGGER.debug(response)
