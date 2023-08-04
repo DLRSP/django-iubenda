@@ -9,7 +9,7 @@
 
 ## GitHub ![GitHub release](https://img.shields.io/github/tag/DLRSP/django-iubenda.svg) ![GitHub release](https://img.shields.io/github/release/DLRSP/django-iubenda.svg)
 
-## Test [![codecov.io](https://codecov.io/github/DLRSP/django-iubenda/coverage.svg?branch=master)](https://codecov.io/github/DLRSP/django-iubenda?branch=master) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/DLRSP/django-iubenda/master.svg)](https://results.pre-commit.ci/latest/github/DLRSP/django-iubenda/master) [![gitthub.com](https://github.com/DLRSP/django-iubenda/actions/workflows/ci.yaml/badge.svg)](https://github.com/DLRSP/django-iubenda/actions/workflows/ci.yaml)
+## Test [![codecov.io](https://codecov.io/github/DLRSP/django-iubenda/coverage.svg?branch=main)](https://codecov.io/github/DLRSP/django-iubenda?branch=main) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/DLRSP/django-iubenda/main.svg)](https://results.pre-commit.ci/latest/github/DLRSP/django-iubenda/main) [![gitthub.com](https://github.com/DLRSP/django-iubenda/actions/workflows/ci.yaml/badge.svg)](https://github.com/DLRSP/django-iubenda/actions/workflows/ci.yaml)
 
 ## Compliance for websites and apps
 Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year at Iubenda
