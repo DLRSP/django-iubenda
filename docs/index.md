@@ -1,4 +1,4 @@
-It's an app to wrap Django errors.
+Django's application for handling privacy and cookie policies configured with Iubenda.
 
 ---
 
@@ -6,83 +6,151 @@ It's an app to wrap Django errors.
 
 These packages are required:
 
-* Python (3.6, 3.7, 3.8, 3.9, 3.10)
-* Django (2.2, 3.2)
+-   Python +3.8 supported.
+-   Django +3.2 supported.
 
 We **highly recommend** and only officially support the latest patch release of each Python and Django series.
 
 
 ## Installation
 
-1. Install using `pip`, including any optional packages you want...
+1. Install from **pip**:
+```shell
+pip install django-iubenda
+```
 
-    ``` shell
-    pip install django-iubenda
-    ```
+2. Modify `settings.py` by adding the app to `INSTALLED_APPS`:
+```python
+INSTALLED_APPS = (
+    "modeltranslation",
+    # ...
+    "iubenda",
+    # ...
+)
+```
 
-    ...or clone the project from github.
+3. Modify `settings.py` by adding the app's context processor to `TEMPLATES`:
+```python
+TEMPLATES = [
+    {
+        # ...
+        "OPTIONS": {
+            "context_processors": [
+                # ...
+                "iubenda.context_processors.iubenda",
+                # ...
+            ],
+        },
+    },
+]
+```
 
-    ``` shell
-    git clone https://github.com/DLRSP/django-iubenda/
-    ```
+4. Be sure the Django's Locale middleware is enabled inside `settings.py`:
+```python
+MIDDLEWARE = (
+    # ...
+    "django.middleware.locale.LocaleMiddleware",
+    # ...
+)
+```
 
-2. Add `'django_errors'` to your `INSTALLED_APPS` setting.
+5. Modify `url.py` by adding the app's urls to `urlpatterns`:
+```python
+urlpatterns += [
+    path("", include("iubenda.urls")),
+]
+```
 
-    ``` python title="settings.py"
-    INSTALLED_APPS = [
-        ...
-        'django_errors',
-    ]
-    ```
+6. Modify `url.py` by adding the app's sitemaps to `sitemaps`:
+```python
+from iubenda.sitemaps import PrivacySitemap, CookieSitemap
 
-3. Add the following to your root `urls.py` file.
+sitemaps = {
+    # ...
+    "privacy": PrivacySitemap,
+    "cookie": CookieSitemap,
+    # ...
+}
+```
 
-    ``` python title="urls.py"
-    # ...other imports...
-    from django_errors import views as errors_views
+7. Be sure the variable `LANGUAGE_CODE` is available for HTML templates:
+```html
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+```
 
-    urlpatterns = [
-        # ...other urls...
-    ]
+8. Modify your project's template to add privacy and cookie policies.
+   For example inside the `footer.html` add following code:
+```html
+{% if not debug %}
+    {% block iubenda %}{% include "iubenda/include-content.html" %}{% endblock iubenda %}
+{% endif %}
+```
 
-    handler400 = errors_views.custom_400
-    """ Handle 400 error """
+## Optional
 
-    handler403 = errors_views.custom_403
-    """ Handle 403 error """
+### Content Security Policy
+If Content Security Policy are implemented in your server and inline scripts are disabled,
+the variable `IUBENDA_CSP_NONCE` can be set with nonce tag will be inserted script's nonce.
+```html
+<script type="text/javascript" {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>
+```
+Inside your webserver's configurations, a rule to dynamically replace your CONSTANT nonce in a random string is needed.
 
-    handler404 = errors_views.custom_404
-    """ Handle 404 error """
+To allow  external source from Iubenda domains, please implement these rules:
+```editorconfig
+Content-Security-Policy:
+    script-src-elem https://*.iubenda.com";
+    img-src https://*.iubenda.com data:";
+    style-src https://*.iubenda.com";
+    connect-src https://*.iubenda.com";
+    frame-src https://*.iubenda.com";
+```
 
-    handler500 = errors_views.custom_500
-    """ Handle 500 error """
-    ```
+If you prefer to not allow ***unsafe-inline*** inside your CSP, please also add the two specific hash for your
+script prompted as error in Javascript Console.
+```editorconfig
+# Iubenda Privacy And Cookie Policy - API
+Content-Security-Policy:
+    ...
+    script-src-elem https://*.iubenda.com 'sha256-YOUR-FIRST-HASH-PROMPTED-INSIDE-CONSOLE' 'sha256-YOUR-SECOND-HASH-PROMPTED-INSIDE-CONSOLE';
+    ...
+```
 
-4. If you would like to handle also the "405 - Method not allowed", add the following middleware to your `MIDDLEWARE` setting.
+Check this article from [Iubenda help](https://www.iubenda.com/it/help/12347-come-configurare-il-content-security-policy-per-consentire-lesecuzione-degli-script-di-iubenda)
 
-    ``` python title="settings.py"
-    MIDDLEWARE = (
-        ...
-        "django_errors.middleware.handler.HttpResponseNotAllowedMiddleware",
-        ...
-    )
-    ```
+### Iubenda's Options
+(To-Do: new feuture)
 
-5. If you would like to receive email message for "404 - Not Found" error, add the following middleware at **top** to your `MIDDLEWARE` setting.
-
-    ``` python title="settings.py"
-    MIDDLEWARE = (
-        "django.middleware.common.BrokenLinkEmailsMiddleware",  # <-- Error Manager 404
-        ...
-    )
-    ```
-
+To personalize the Iubenda script behaviour, the dict `IUBENDA_OPTIONS` can be configured inside `settings.py`
+```python
+IUBENDA_OPTIONS = {
+    "ccpaAcknowledgeOnDisplay": "true",
+    "ccpaApplies": "true",
+    "consentOnContinuedBrowsing": "false",
+    "enableCcpa": "true",
+    "floatingPreferencesButtonDisplay": "bottom-left",
+    "invalidateConsentWithoutLog": "true",
+    "perPurposeConsent": "true",
+    "whitelabel": "false",
+    "banner": {
+        "acceptButtonDisplay": "true",
+        "backgroundOverlay": "true",
+        "closeButtonRejects": "true",
+        "customizeButtonDisplay": "true",
+        "explicitWithdrawal": "true",
+        "fontSize": "14px",
+        "listPurposes": "true",
+        "position": "float-center",
+        "rejectButtonDisplay": "true",
+    },
+}
+```
 
 ## Example
 
 Let's take a look at a quick example of using this project to build a simple App with **custom error pages**.
 
-* Browser the demo app on-line on [Heroku][sandbox]
 * Check the demo repo on [GitHub][github-demo]
 
 ## Quickstart
@@ -129,7 +197,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 [index]: .
-[sandbox]: https://django-iubenda.herokuapp.com/
 [github-demo]: https://github.com/DLRSP/example/tree/django-iubenda
 
 [quickstart]: tutorial/example.md
