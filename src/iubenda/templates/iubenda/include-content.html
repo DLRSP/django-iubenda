@@ -9,7 +9,65 @@
 </p>
 
 <!-- JS Cookie Solution -->
-<script type="text/javascript" {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>var _iub = _iub || [];_iub.csConfiguration = {"ccpaAcknowledgeOnDisplay":true,"ccpaApplies":true,"consentOnContinuedBrowsing":false,"enableCcpa":true,"floatingPreferencesButtonDisplay":"bottom-left","invalidateConsentWithoutLog":true,"perPurposeConsent":true,"siteId":{{ cx_iubenda.iub_site_id }},"whitelabel":false,"cookiePolicyId":{{ cx_iubenda.iub_policy_id }},"lang":"{{ LANGUAGE_CODE }}", "banner":{ "acceptButtonDisplay":true,"backgroundOverlay":true,"closeButtonRejects":true,"customizeButtonDisplay":true,"explicitWithdrawal":true,"fontSize":"14px","listPurposes":true,"position":"float-center","rejectButtonDisplay":true }};</script>
+<script type="text/javascript" {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>
+    var _iub = _iub || [];
+    _iub.csConfiguration = {
+        "lang": "{{ LANGUAGE_CODE }}",
+        "siteId": {{ cx_iubenda.iub_site_id }},
+        "cookiePolicyId": {{ cx_iubenda.iub_policy_id }},
+        "ccpaAcknowledgeOnDisplay": {{ cx_iubenda_options.ccpaAcknowledgeOnDisplay|default_if_none:true }},
+        "ccpaApplies": {{ cx_iubenda_options.ccpaApplies|default_if_none:true }},
+        "consentOnContinuedBrowsing": {{ cx_iubenda_options.consentOnContinuedBrowsing|default_if_none:false }},
+        "enableCcpa": {{ cx_iubenda_options.enableCcpa|default_if_none:true }},
+        "floatingPreferencesButtonDisplay": "{{ cx_iubenda_options.floatingPreferencesButtonDisplay|default_if_none:'bottom-left' }}",
+        "invalidateConsentWithoutLog": {{ cx_iubenda_options.invalidateConsentWithoutLog|default_if_none:true }},
+        "perPurposeConsent": {{ cx_iubenda_options.perPurposeConsent|default_if_none:true }},
+        "whitelabel": {{ cx_iubenda_options.whitelabel|default_if_none:false }},
+        "banner": {
+            "acceptButtonDisplay": {{ cx_iubenda_options.banner.acceptButtonDisplay|default_if_none:true }},
+            "backgroundOverlay": {{ cx_iubenda_options.banner.backgroundOverlay|default_if_none:true }},
+            "closeButtonRejects": {{ cx_iubenda_options.banner.closeButtonRejects|default_if_none:true }},
+            "customizeButtonDisplay": {{ cx_iubenda_options.banner.customizeButtonDisplay|default_if_none:true }},
+            "explicitWithdrawal": {{ cx_iubenda_options.banner.explicitWithdrawal|default_if_none:true }},
+            "fontSize": "{{ cx_iubenda_options.banner.fontSize|default_if_none:'14px' }}",
+            "listPurposes": {{ cx_iubenda_options.banner.listPurposes|default_if_none:true }},
+            "position": "{{ cx_iubenda_options.banner.position|default_if_none:'float-center' }}",
+            "rejectButtonDisplay": {{ cx_iubenda_options.rejectButtonDisplay|default_if_none:true }}
+        }
+        {% if cx_iubenda_gtm %}
+        ,"googleConsentMode": "{{ cx_iubenda_options.googleConsentMode|default_if_none:'template' }}",
+        "callback": {
+            onPreferenceExpressedOrNotNeeded: function(preference) {
+                dataLayer.push({
+                    iubenda_ccpa_opted_out: _iub.cs.api.isCcpaOptedOut()
+                });
+                if (!preference) {
+                    dataLayer.push({
+                        event: "iubenda_preference_not_needed"
+                    });
+                } else {
+                    if (preference.consent === true) {
+                        dataLayer.push({
+                            event: "iubenda_consent_given"
+                        });
+                    } else if (preference.consent === false) {
+                        dataLayer.push({
+                            event: "iubenda_consent_rejected"
+                        });
+                    } else if (preference.purposes) {
+                        for (var purposeId in preference.purposes) {
+                            if (preference.purposes[purposeId]) {
+                                dataLayer.push({
+                                    event: "iubenda_consent_given_purpose_" + purposeId
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+        }{% endif %}
+    };
+</script>
 
 <!-- JS Iubenda -->
 <script type="text/javascript" src="https://cdn.iubenda.com/cs/ccpa/stub.js"></script>

@@ -120,9 +120,8 @@ Content-Security-Policy:
 Check this article from [Iubenda help](https://www.iubenda.com/it/help/12347-come-configurare-il-content-security-policy-per-consentire-lesecuzione-degli-script-di-iubenda)
 
 ### Iubenda's Options
-(To-Do: new feuture)
 
-To personalize the Iubenda script behaviour, the dict `IUBENDA_OPTIONS` can be configured inside `settings.py`
+To personalize the Iubenda script's behaviour, the dict `IUBENDA_OPTIONS` can be configured inside `settings.py`
 ```python
 IUBENDA_OPTIONS = {
     "ccpaAcknowledgeOnDisplay": "true",
@@ -146,6 +145,15 @@ IUBENDA_OPTIONS = {
     },
 }
 ```
+
+### Integration with Google Tag Manager
+If Google Tag Manager is implemented in your application and all needed settings were configured inside the container,
+the variable `IUBENDA_GTM` can be set with the value `True` and the Iubenda's callback will be inserted inside the script.
+
+For needed configuration inside Google Tag Manager container, please refer to these notes:
+- [Google Consent Mode](https://www.iubenda.com/en/help/27137-google-consent-mode)
+- [Google Consent Mode setup GTM with Iubenda](https://www.iubenda.com/en/help/74198-google-consent-mode-set-up-google-tag-manager-with-iubenda)
+- [GTM Blocking Cookies](https://www.iubenda.com/en/help/1235-google-tag-manager-blocking-cookies)
 
 ## Example
 

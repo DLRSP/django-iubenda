@@ -36,6 +36,10 @@ def iubenda(request):
             if cx_iubenda_options:
                 context.update({"cx_iubenda_options": cx_iubenda_options})
 
+            cx_iubenda_gtm = getattr(settings, "IUBENDA_GTM", False)
+            if cx_iubenda_gtm:
+                context.update({"cx_iubenda_gtm": cx_iubenda_gtm})
+
             cx_iubenda_nonce = getattr(settings, "IUBENDA_CSP_NONCE", False)
             if cx_iubenda_nonce:
                 context.update({"cx_iubenda_nonce": cx_iubenda_nonce})
