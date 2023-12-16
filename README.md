@@ -13,7 +13,7 @@
 
 ## Compliance for websites and apps
 Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year at Iubenda
-[![Iubenda](https://cdn.filestackcontent.com/kTEmy2XBQJiiEy0ULvg0)](http://iubenda.refr.cc/dlrspapi)
+[![Iubenda](https://client-assets.referralcandy.com/md6Y46jBT5ufTCO2zzGt_1668598186.png)](http://iubenda.refr.cc/dlrspapi)
 
 
 ## Check Demo Project
