@@ -15,27 +15,26 @@
         "lang": "{{ LANGUAGE_CODE }}",
         "siteId": {{ cx_iubenda.iub_site_id }},
         "cookiePolicyId": {{ cx_iubenda.iub_policy_id }},
-        "ccpaAcknowledgeOnDisplay": {{ cx_iubenda_options.ccpaAcknowledgeOnDisplay|default_if_none:true }},
-        "ccpaApplies": {{ cx_iubenda_options.ccpaApplies|default_if_none:true }},
-        "consentOnContinuedBrowsing": {{ cx_iubenda_options.consentOnContinuedBrowsing|default_if_none:false }},
-        "enableCcpa": {{ cx_iubenda_options.enableCcpa|default_if_none:true }},
-        "floatingPreferencesButtonDisplay": "{{ cx_iubenda_options.floatingPreferencesButtonDisplay|default_if_none:'bottom-left' }}",
-        "invalidateConsentWithoutLog": {{ cx_iubenda_options.invalidateConsentWithoutLog|default_if_none:true }},
-        "perPurposeConsent": {{ cx_iubenda_options.perPurposeConsent|default_if_none:true }},
-        "whitelabel": {{ cx_iubenda_options.whitelabel|default_if_none:false }},
+        "ccpaAcknowledgeOnDisplay": {{ cx_iubenda_options.ccpaAcknowledgeOnDisplay|default:'true' }},
+        "ccpaApplies": {{ cx_iubenda_options.ccpaApplies|default:'true' }},
+        "consentOnContinuedBrowsing": {{ cx_iubenda_options.consentOnContinuedBrowsing|default:'false' }},
+        "enableCcpa": {{ cx_iubenda_options.enableCcpa|default:'true' }},
+        "floatingPreferencesButtonDisplay": "{{ cx_iubenda_options.floatingPreferencesButtonDisplay|default:'bottom-left' }}",
+        "invalidateConsentWithoutLog": {{ cx_iubenda_options.invalidateConsentWithoutLog|default:'true' }},
+        "perPurposeConsent": {{ cx_iubenda_options.perPurposeConsent|default:'true' }},
+        "whitelabel": {{ cx_iubenda_options.whitelabel|default:'false' }},
         "banner": {
-            "acceptButtonDisplay": {{ cx_iubenda_options.banner.acceptButtonDisplay|default_if_none:true }},
-            "backgroundOverlay": {{ cx_iubenda_options.banner.backgroundOverlay|default_if_none:true }},
-            "closeButtonRejects": {{ cx_iubenda_options.banner.closeButtonRejects|default_if_none:true }},
-            "customizeButtonDisplay": {{ cx_iubenda_options.banner.customizeButtonDisplay|default_if_none:true }},
-            "explicitWithdrawal": {{ cx_iubenda_options.banner.explicitWithdrawal|default_if_none:true }},
-            "fontSize": "{{ cx_iubenda_options.banner.fontSize|default_if_none:'14px' }}",
-            "listPurposes": {{ cx_iubenda_options.banner.listPurposes|default_if_none:true }},
-            "position": "{{ cx_iubenda_options.banner.position|default_if_none:'float-center' }}",
-            "rejectButtonDisplay": {{ cx_iubenda_options.rejectButtonDisplay|default_if_none:true }}
-        }
-        {% if cx_iubenda_gtm %}
-        ,"googleConsentMode": "{{ cx_iubenda_options.googleConsentMode|default_if_none:'template' }}",
+            "acceptButtonDisplay": {{ cx_iubenda_options.banner.acceptButtonDisplay|default:'true' }},
+            "backgroundOverlay": {{ cx_iubenda_options.banner.backgroundOverlay|default:'true' }},
+            "closeButtonRejects": {{ cx_iubenda_options.banner.closeButtonRejects|default:'true' }},
+            "customizeButtonDisplay": {{ cx_iubenda_options.banner.customizeButtonDisplay|default:'true' }},
+            "explicitWithdrawal": {{ cx_iubenda_options.banner.explicitWithdrawal|default:'true' }},
+            "fontSize": "{{ cx_iubenda_options.banner.fontSize|default:'14px' }}",
+            "listPurposes": {{ cx_iubenda_options.banner.listPurposes|default:'true' }},
+            "position": "{{ cx_iubenda_options.banner.position|default:'float-center' }}",
+            "rejectButtonDisplay": {{ cx_iubenda_options.rejectButtonDisplay|default:'true' }}
+        }{% if cx_iubenda_gtm %}
+        ,"googleConsentMode": "{{ cx_iubenda_options.googleConsentMode|default:'template' }}",
         "callback": {
             onPreferenceExpressedOrNotNeeded: function(preference) {
                 dataLayer.push({
