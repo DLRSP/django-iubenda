@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/community/contributing/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/community/references/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/community/status_code/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/community/third-party-packages/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/tutorial/customize/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/tutorial/example/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/tutorial/images/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/DLRSP/django-iubenda/tutorial/templates/</loc>
-         <lastmod>2023-12-16</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
