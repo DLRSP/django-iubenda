@@ -4,7 +4,7 @@ Context processors for Iubenda app
 
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.sites.models import Site
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.cache import cache
 
 from .models import Iubenda
@@ -27,7 +27,7 @@ def iubenda(request):
     if not context_cache or context_cache is None:
         try:
             context = {
-                "cx_iubenda": Iubenda.objects.filter(site=Site.objects.get_current())
+                "cx_iubenda": Iubenda.objects.filter(site=get_current_site(request))
                 .values("iub_site_id", "iub_policy_id")
                 .get(),
             }

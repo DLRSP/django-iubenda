@@ -64,14 +64,23 @@ MIDDLEWARE = (
 )
 ```
 
-5. Modify `url.py` by adding the app's urls to `urlpatterns`:
+5. Optionally, but sugguested, the Django's Current Site middleware is enabled inside `settings.py`:
+```python
+MIDDLEWARE = (
+    # ...
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
+    # ...
+)
+```
+
+6. Modify `url.py` by adding the app's urls to `urlpatterns`:
 ```python
 urlpatterns += [
     path("", include("iubenda.urls")),
 ]
 ```
 
-6. Modify `url.py` by adding the app's sitemaps to `sitemaps`:
+7. Modify `url.py` by adding the app's sitemaps to `sitemaps`:
 ```python
 from iubenda.sitemaps import PrivacySitemap, CookieSitemap
 
@@ -83,13 +92,13 @@ sitemaps = {
 }
 ```
 
-7. Be sure the variable `LANGUAGE_CODE` is available for HTML templates:
+8. Be sure the variable `LANGUAGE_CODE` is available for HTML templates:
 ```html
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 ```
 
-8. Modify your project's template to add privacy and cookie policies.
+9. Modify your project's template to add privacy and cookie policies.
    For example inside the `footer.html` add following code:
 ```html
 {% if not debug %}
