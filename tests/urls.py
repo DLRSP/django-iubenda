@@ -1,4 +1,5 @@
 """Test's urls view for django-iubenda"""
+
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
