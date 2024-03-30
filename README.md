@@ -25,86 +25,78 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
 
 ## Setup
 1. Install from **pip**:
-```shell
-pip install django-iubenda
-```
-
+   ```shell
+   pip install django-iubenda
+   ```
 2. Modify `settings.py` by adding the app to `INSTALLED_APPS`:
-```python
-INSTALLED_APPS = (
-    "modeltranslation",
-    # ...
-    "iubenda",
-    # ...
-)
-```
-
+   ```python
+   INSTALLED_APPS = (
+       "modeltranslation",
+       # ...
+       "iubenda",
+       # ...
+   )
+   ```
 3. Modify `settings.py` by adding the app's context processor to `TEMPLATES`:
-```python
-TEMPLATES = [
-    {
-        # ...
-        "OPTIONS": {
-            "context_processors": [
-                # ...
-                "iubenda.context_processors.iubenda",
-                # ...
-            ],
-        },
-    },
-]
-```
-
+   ```python
+   TEMPLATES = [
+       {
+           # ...
+           "OPTIONS": {
+               "context_processors": [
+                   # ...
+                   "iubenda.context_processors.iubenda",
+                   # ...
+               ],
+           },
+       },
+   ]
+   ```
 4. Be sure the Django's Locale middleware is enabled inside `settings.py`:
-```python
-MIDDLEWARE = (
-    # ...
-    "django.middleware.locale.LocaleMiddleware",
-    # ...
-)
-```
-
+   ```python
+   MIDDLEWARE = (
+       # ...
+       "django.middleware.locale.LocaleMiddleware",
+       # ...
+   )
+   ```
 5. Optionally, but sugguested, the Django's Current Site middleware is enabled inside `settings.py`:
-```python
-MIDDLEWARE = (
-    # ...
-    "django.contrib.sites.middleware.CurrentSiteMiddleware",
-    # ...
-)
-```
-
+   ```python
+   MIDDLEWARE = (
+       # ...
+       "django.contrib.sites.middleware.CurrentSiteMiddleware",
+       # ...
+   )
+   ```
 6. Modify `url.py` by adding the app's urls to `urlpatterns`:
-```python
-urlpatterns += [
-    path("", include("iubenda.urls")),
-]
-```
-
+   ```python
+   urlpatterns += [
+       path("", include("iubenda.urls")),
+   ]
+   ```
 7. Modify `url.py` by adding the app's sitemaps to `sitemaps`:
-```python
-from iubenda.sitemaps import PrivacySitemap, CookieSitemap
-
-sitemaps = {
-    # ...
-    "privacy": PrivacySitemap,
-    "cookie": CookieSitemap,
-    # ...
-}
-```
-
+   ```python
+   from iubenda.sitemaps import PrivacySitemap, CookieSitemap
+   
+   sitemaps = {
+       # ...
+       "privacy": PrivacySitemap,
+       "cookie": CookieSitemap,
+       # ...
+   }
+   ```
 8. Be sure the variable `LANGUAGE_CODE` is available for HTML templates:
-```html
-{% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
-```
-
+   ```html
+   {% load i18n %}
+   {% get_current_language as LANGUAGE_CODE %}
+   ```
 9. Modify your project's template to add privacy and cookie policies.
    For example inside the `footer.html` add following code:
-```html
-{% if not debug %}
-    {% block iubenda %}{% include "iubenda/include-content.html" %}{% endblock iubenda %}
-{% endif %}
-```
+   ```html
+   {% if not debug %}
+       {% block iubenda %}{% include "iubenda/include-content.html" %}{% endblock iubenda %}
+   {% endif %}
+   ```
 
 ## Optional
 
