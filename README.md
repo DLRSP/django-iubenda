@@ -77,7 +77,7 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
 7. Modify `url.py` by adding the app's sitemaps to `sitemaps`:
    ```python
    from iubenda.sitemaps import PrivacySitemap, CookieSitemap
-   
+
    sitemaps = {
        # ...
        "privacy": PrivacySitemap,
