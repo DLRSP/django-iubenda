@@ -100,6 +100,13 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
 
 ## Optional
 
+### Autoblocking
+If Iubenda autoblocking's configurations are implemented in your account,
+the variable `IUBENDA_AUTOBLOCKING` can be set to import the site's script.
+```html
+<script type="text/javascript" src="https://cs.iubenda.com/autoblocking/{{ cx_iubenda.iub_site_id }}.js"></script>
+```
+
 ### Content Security Policy
 If Content Security Policy are implemented in your server and inline scripts are disabled,
 the variable `IUBENDA_CSP_NONCE` can be set with nonce tag will be inserted script's nonce.
@@ -135,10 +142,16 @@ Check this article from [Iubenda help](https://www.iubenda.com/it/help/12347-com
 To personalize the Iubenda script's behaviour, the dict `IUBENDA_OPTIONS` can be configured inside `settings.py`
 ```python
 IUBENDA_OPTIONS = {
+    "countryDetection": "true",
+    "askConsentAtCookiePolicyUpdate": "true",
+    "enableFadp": "true",
+    "enableLgpd": "true",
+    "lgpdAppliesGlobally": "true",
+    "enableUspr": "true",
+    "enableCcpa": "true",
     "ccpaAcknowledgeOnDisplay": "true",
     "ccpaApplies": "true",
     "consentOnContinuedBrowsing": "false",
-    "enableCcpa": "true",
     "floatingPreferencesButtonDisplay": "bottom-left",
     "invalidateConsentWithoutLog": "true",
     "perPurposeConsent": "true",
@@ -153,6 +166,7 @@ IUBENDA_OPTIONS = {
         "listPurposes": "true",
         "position": "float-center",
         "rejectButtonDisplay": "true",
+        "showPurposesToggles": "true"
     },
 }
 ```

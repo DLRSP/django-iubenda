@@ -1,8 +1,12 @@
+"""
+Views for Iubenda app
+"""
+
 import json
+import logging
 
 import requests
 from django.conf import settings
-from django.contrib import messages
 from django.contrib.sites.models import Site
 from django.core.cache import cache
 from django.shortcuts import render
@@ -10,6 +14,8 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.vary import vary_on_headers
 
 from .models import Iubenda
+
+logger = logging.getLogger(__name__)
 
 
 @require_http_methods(["GET"])
@@ -22,7 +28,7 @@ def privacy(request):
     try:
         context_cache = cache.get(cache_key)
     except Exception as err:
-        messages.warning(request, err)
+        logger.warning("iubenda: %s", err)
 
     if not context_cache or context_cache is None:
         try:
@@ -42,7 +48,8 @@ def privacy(request):
             context_cache = cache.get(cache_key)
 
         except Exception as err:
-            messages.error(request, err)
+            logger.error("iubenda: %s", err)
+
     if getattr(settings, "IUBENDA_USE_COMPRESS", True):
         return render(request, "iubenda/privacy-compress.html", context_cache)
     return render(request, "iubenda/privacy.html", context_cache)
@@ -58,7 +65,7 @@ def cookie(request):
     try:
         context_cache = cache.get(cache_key)
     except Exception as err:
-        messages.warning(request, err)
+        logger.warning("iubenda: %s", err)
 
     if not context_cache or context_cache is None:
         try:
@@ -78,7 +85,7 @@ def cookie(request):
             context_cache = cache.get(cache_key)
 
         except Exception as err:
-            messages.error(request, err)
+            logger.error("iubenda: %s", err)
     if getattr(settings, "IUBENDA_USE_COMPRESS", True):
         return render(request, "iubenda/cookie-compress.html", context_cache)
     return render(request, "iubenda/cookie.html", context_cache)

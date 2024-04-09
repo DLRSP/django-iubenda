@@ -2,12 +2,16 @@
 Context processors for Iubenda app
 """
 
+import logging
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.cache import cache
 
 from .models import Iubenda
+
+logger = logging.getLogger(__name__)
 
 
 def iubenda(request):
@@ -44,8 +48,12 @@ def iubenda(request):
             if cx_iubenda_nonce:
                 context.update({"cx_iubenda_nonce": cx_iubenda_nonce})
 
+            cx_iubenda_autoblocking = getattr(settings, "IUBENDA_AUTOBLOCKING", False)
+            if cx_iubenda_nonce:
+                context.update({"cx_iubenda_autoblocking": cx_iubenda_autoblocking})
+
             context_cache = cache.set(cache_key, context, timeout=86400)
             return context
         except Exception as err:
-            messages.error(request, err)
+            logger.error("iubenda: %s", err)
     return context_cache

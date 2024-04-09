@@ -15,10 +15,16 @@
         "lang": "{{ LANGUAGE_CODE }}",
         "siteId": {{ cx_iubenda.iub_site_id }},
         "cookiePolicyId": {{ cx_iubenda.iub_policy_id }},
+        "countryDetection": {{ cx_iubenda_options.countryDetection|default:'true' }},
+        "askConsentAtCookiePolicyUpdate": {{ cx_iubenda_options.askConsentAtCookiePolicyUpdate|default:'true' }},
+        "enableFadp": {{ cx_iubenda_options.enableFadp|default:'true' }},
+        "enableLgpd": {{ cx_iubenda_options.enableLgpd|default:'true' }},
+        "lgpdAppliesGlobally": {{ cx_iubenda_options.lgpdAppliesGlobally|default:'false' }},
+        "enableUspr": {{ cx_iubenda_options.enableUspr|default:'true' }},
+        "enableCcpa": {{ cx_iubenda_options.enableCcpa|default:'true' }},
         "ccpaAcknowledgeOnDisplay": {{ cx_iubenda_options.ccpaAcknowledgeOnDisplay|default:'true' }},
         "ccpaApplies": {{ cx_iubenda_options.ccpaApplies|default:'true' }},
         "consentOnContinuedBrowsing": {{ cx_iubenda_options.consentOnContinuedBrowsing|default:'false' }},
-        "enableCcpa": {{ cx_iubenda_options.enableCcpa|default:'true' }},
         "floatingPreferencesButtonDisplay": "{{ cx_iubenda_options.floatingPreferencesButtonDisplay|default:'bottom-left' }}",
         "invalidateConsentWithoutLog": {{ cx_iubenda_options.invalidateConsentWithoutLog|default:'true' }},
         "perPurposeConsent": {{ cx_iubenda_options.perPurposeConsent|default:'true' }},
@@ -32,7 +38,8 @@
             "fontSize": "{{ cx_iubenda_options.banner.fontSize|default:'14px' }}",
             "listPurposes": {{ cx_iubenda_options.banner.listPurposes|default:'true' }},
             "position": "{{ cx_iubenda_options.banner.position|default:'float-center' }}",
-            "rejectButtonDisplay": {{ cx_iubenda_options.rejectButtonDisplay|default:'true' }}
+            "rejectButtonDisplay": {{ cx_iubenda_options.rejectButtonDisplay|default:'true' }},
+            "showPurposesToggles": {{ cx_iubenda_options.showPurposesToggles|default:'true' }}
         }{% if cx_iubenda_gtm %}
         ,"googleConsentMode": "{{ cx_iubenda_options.googleConsentMode|default:'template' }}",
         "callback": {
@@ -69,5 +76,8 @@
 </script>
 
 <!-- JS Iubenda -->
+{% if cx_iubenda_autoblocking %}
+<script type="text/javascript" src="https://cs.iubenda.com/autoblocking/{{ cx_iubenda.iub_site_id }}.js"></script>
+{% endif %}
 <script type="text/javascript" src="https://cdn.iubenda.com/cs/ccpa/stub.js"></script>
 <script type="text/javascript" src="https://cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
