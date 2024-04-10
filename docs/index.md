@@ -164,7 +164,7 @@ IUBENDA_OPTIONS = {
         "listPurposes": "true",
         "position": "float-center",
         "rejectButtonDisplay": "true",
-        "showPurposesToggles": "true"
+        "showPurposesToggles": "true",
     },
 }
 ```
