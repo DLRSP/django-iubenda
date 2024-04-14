@@ -9,7 +9,7 @@
 </p>
 
 <!-- JS Cookie Solution -->
-<script type="text/javascript" {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>
+<script {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>
     var _iub = _iub || [];
     _iub.csConfiguration = {
         "lang": "{{ LANGUAGE_CODE }}",
@@ -77,7 +77,7 @@
 
 <!-- JS Iubenda -->
 {% if cx_iubenda_autoblocking %}
-<script type="text/javascript" src="https://cs.iubenda.com/autoblocking/{{ cx_iubenda.iub_site_id }}.js"></script>
+<script src="https://cs.iubenda.com/autoblocking/{{ cx_iubenda.iub_site_id }}.js"></script>
 {% endif %}
-<script type="text/javascript" src="https://cdn.iubenda.com/cs/ccpa/stub.js"></script>
-<script type="text/javascript" src="https://cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+<script src="https://cdn.iubenda.com/cs/ccpa/stub.js"></script>
+<script src="https://cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>

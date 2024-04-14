@@ -104,14 +104,14 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
 If Iubenda autoblocking's configurations are implemented in your account,
 the variable `IUBENDA_AUTOBLOCKING` can be set to import the site's script.
 ```html
-<script type="text/javascript" src="https://cs.iubenda.com/autoblocking/{{ cx_iubenda.iub_site_id }}.js"></script>
+<script src="https://cs.iubenda.com/autoblocking/{{ cx_iubenda.iub_site_id }}.js"></script>
 ```
 
 ### Content Security Policy
 If Content Security Policy are implemented in your server and inline scripts are disabled,
 the variable `IUBENDA_CSP_NONCE` can be set with nonce tag will be inserted script's nonce.
 ```html
-<script type="text/javascript" {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>
+<script {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>
 ```
 Inside your webserver's configurations, a rule to dynamically replace your CONSTANT nonce in a random string is needed.
 
