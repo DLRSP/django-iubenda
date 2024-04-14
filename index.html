@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.50c56a3b.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.bcfcd587.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -335,6 +335,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#autoblocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autoblocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#content-security-policy" class="md-nav__link">
     <span class="md-ellipsis">
       Content Security Policy
@@ -438,10 +447,8 @@
     
     
     
-    
     <li class="md-nav__item md-nav__item--nested">
       
-        
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
@@ -496,10 +503,8 @@
     
     
     
-    
     <li class="md-nav__item md-nav__item--nested">
       
-        
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
@@ -632,10 +637,8 @@
     
     
     
-    
     <li class="md-nav__item md-nav__item--nested">
       
-        
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
@@ -801,6 +804,15 @@
   
     <nav class="md-nav" aria-label="Optional">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autoblocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autoblocking
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#content-security-policy" class="md-nav__link">
@@ -1003,10 +1015,15 @@
 </li>
 </ol>
 <h2 id="optional"><a class="toclink" href="#optional">Optional</a></h2>
+<h3 id="autoblocking"><a class="toclink" href="#autoblocking">Autoblocking</a></h3>
+<p>If Iubenda autoblocking's configurations are implemented in your account,
+the variable <code>IUBENDA_AUTOBLOCKING</code> can be set to import the site's script.
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cs.iubenda.com/autoblocking/{{ cx_iubenda.iub_site_id }}.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div></p>
 <h3 id="content-security-policy"><a class="toclink" href="#content-security-policy">Content Security Policy</a></h3>
 <p>If Content Security Policy are implemented in your server and inline scripts are disabled,
 the variable <code>IUBENDA_CSP_NONCE</code> can be set with nonce tag will be inserted script's nonce.
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="err">{%</span> <span class="na">if</span> <span class="na">cx_iubenda_nonce</span> <span class="err">%}</span><span class="na">nonce</span><span class="o">=</span><span class="s">&quot;{{ cx_iubenda_nonce }}&quot;</span><span class="err">{%</span> <span class="na">endif</span> <span class="err">%}</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="err">{%</span> <span class="na">if</span> <span class="na">cx_iubenda_nonce</span> <span class="err">%}</span><span class="na">nonce</span><span class="o">=</span><span class="s">&quot;{{ cx_iubenda_nonce }}&quot;</span><span class="err">{%</span> <span class="na">endif</span> <span class="err">%}</span><span class="p">&gt;</span>
 </code></pre></div>
 Inside your webserver's configurations, a rule to dynamically replace your CONSTANT nonce in a random string is needed.</p>
 <p>To allow  external source from Iubenda domains, please implement these rules:
@@ -1029,10 +1046,16 @@ Content-Security-Policy:
 <h3 id="iubendas-options"><a class="toclink" href="#iubendas-options">Iubenda's Options</a></h3>
 <p>To personalize the Iubenda script's behaviour, the dict <code>IUBENDA_OPTIONS</code> can be configured inside <code>settings.py</code>
 <div class="highlight"><pre><span></span><code><span class="n">IUBENDA_OPTIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;countryDetection&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;askConsentAtCookiePolicyUpdate&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;enableFadp&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;enableLgpd&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lgpdAppliesGlobally&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;enableUspr&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;enableCcpa&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
     <span class="s2">&quot;ccpaAcknowledgeOnDisplay&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
     <span class="s2">&quot;ccpaApplies&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
     <span class="s2">&quot;consentOnContinuedBrowsing&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;enableCcpa&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
     <span class="s2">&quot;floatingPreferencesButtonDisplay&quot;</span><span class="p">:</span> <span class="s2">&quot;bottom-left&quot;</span><span class="p">,</span>
     <span class="s2">&quot;invalidateConsentWithoutLog&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
     <span class="s2">&quot;perPurposeConsent&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
@@ -1047,6 +1070,7 @@ Content-Security-Policy:
         <span class="s2">&quot;listPurposes&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
         <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="s2">&quot;float-center&quot;</span><span class="p">,</span>
         <span class="s2">&quot;rejectButtonDisplay&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;showPurposesToggles&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">}</span>
 </code></pre></div></p>
@@ -1110,7 +1134,7 @@ SOFTWARE.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    2023-12-23
+    2024-04-14
   </span>
 
     
@@ -1202,10 +1226,10 @@ SOFTWARE.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.top", "content.code.annotate", "content.tabs.link", "search.suggest", "search.highlight"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.top", "content.code.annotate", "content.tabs.link", "search.suggest", "search.highlight"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="assets/javascripts/bundle.1e8ae164.min.js"></script>
       
     
   </body>
