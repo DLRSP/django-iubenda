@@ -3,7 +3,8 @@ requires = ["setuptools >= 40.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-dynamic = ["dependencies"]
+name = "django-iubenda"
+dynamic = ["dependencies", "version"]
 readme = "README.md"
 license = {file = "LICENSE"}
 keywords = ["django", "iubenda", "privacy","cookie"]
@@ -46,6 +47,8 @@ classifiers = [
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements/requirements.in"]}
+version = {attr = "iubenda.VERSION"}
+readme = {file = "README.md"}
 
 [tool.black]
 target-version = ['py311']
