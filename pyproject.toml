@@ -105,7 +105,7 @@ source = ["src", ".tox/*/site-packages"]
 
 [tool.coverage.run]
 branch = true
-source = ["src"]
+source = ["iubenda"]
 
 [tool.coverage.report]
 show_missing = true
