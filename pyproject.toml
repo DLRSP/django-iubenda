@@ -103,7 +103,7 @@ type = [
 
 # bump-my-version
 [tool.bumpversion]
-current_version = "1.6.1"
+current_version = "1.6.2"
 allow_dirty = true
 
 [[tool.bumpversion.files]]
