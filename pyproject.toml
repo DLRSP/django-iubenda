@@ -2,6 +2,51 @@
 requires = ["setuptools >= 40.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project]
+dynamic = ["dependencies"]
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["django", "iubenda", "privacy","cookie"]
+classifiers = [
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 5 - Production/Stable",
+
+  # Indicate who your project is intended for
+  "Intended Audience :: Developers",
+
+  # Pick your license
+  "License :: OSI Approved :: MIT License",
+
+  # Specify the Python versions
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+
+  # Specify the Django versions
+  "Framework :: Django",
+  "Framework :: Django :: 3.2",
+  "Framework :: Django :: 4.2",
+
+  # Specify the OS/Environment info
+  "Environment :: Web Environment",
+  "Operating System :: OS Independent",
+
+  # Specify the optional Topic
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+  "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+  "Topic :: Software Development :: Libraries :: Application Frameworks",
+  "Topic :: Software Development :: Libraries",
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements/requirements.in"]}
+
 [tool.black]
 target-version = ['py311']
 
