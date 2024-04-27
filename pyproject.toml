@@ -112,7 +112,6 @@ show_missing = true
 fail_under = 100
 
 [tool.flake8]
-# Check that this is aligned with your other tools like Black
 max-line-length = 120
 exclude = [
     # No need to traverse our git directory
@@ -129,6 +128,7 @@ extend-ignore = [
     # https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#slices
     "E203","E501",
 ]
+count = true
 
 [tool.towncrier]
 package = "iubenda"
