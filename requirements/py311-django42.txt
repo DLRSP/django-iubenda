@@ -104,9 +104,9 @@ charset-normalizer==3.3.2 \
     --hash=sha256:fd1abc0d89e30cc4e02e4064dc67fcc51bd941eb395c502aac3ec19fab46b519 \
     --hash=sha256:ff8fa367d09b717b2a17a052544193ad76cd49979c805768879cb63d9ca50561
     # via requests
-django==4.2.12 \
-    --hash=sha256:6a6b4aff8a2db2dc7dcc5650cb2c7a7a0d1eb38e2aa2335fdf001e41801e9797 \
-    --hash=sha256:7640e86835d44ae118c2916a803d8081f40e214ee18a5a92a0202994ca60a4b4
+django==4.2.13 \
+    --hash=sha256:837e3cf1f6c31347a1396a3f6b65688f2b4bb4a11c580dcb628b5afe527b68a5 \
+    --hash=sha256:a17fcba2aad3fc7d46fdb23215095dbbd64e6174bf4589171e732b18b07e426a
     # via
     #   -r requirements/requirements.in
     #   django-appconf
