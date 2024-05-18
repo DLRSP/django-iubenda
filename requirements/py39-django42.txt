@@ -119,9 +119,9 @@ django-compressor==4.4 \
     --hash=sha256:1b0acc9cfba9f69bc38e7c41da9b0d70a20bc95587b643ffef9609cf46064f67 \
     --hash=sha256:6e2b0c0becb9607f5099c2546a824c5b84a6918a34bc37a8a622ffa250313596
     # via -r requirements/requirements.in
-django-modeltranslation==0.18.11 \
-    --hash=sha256:81b68e4dc806a3b779ac88babe1cbd99d5318d374a43b3737a65fb0f4c1cffe8 \
-    --hash=sha256:a6e2c459e3b31852287d030bc6e29fa28576db97455dccd399fe08ac8e9223b9
+django-modeltranslation==0.18.13 \
+    --hash=sha256:4665ff19617e3a868f4c8173fe1b359d6a50362552165e665a0d32f78edafddd \
+    --hash=sha256:5da153f8eb08adbd63d2d41be7aa15aa250adec8034b0553eea6e6746bfcd3c9
     # via -r requirements/requirements.in
 idna==3.7 \
     --hash=sha256:028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc \
