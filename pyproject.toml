@@ -49,12 +49,8 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Application Frameworks",
   "Topic :: Software Development :: Libraries",
 ]
-dependencies = [
-  "django<5",
-  "django-modeltranslation",
-  "requests",
-  "django_compressor"
-]
+
+dependencies = {file = ["requirements/requirements.in"]}
 
 [project.optional-dependencies]
 test = [
