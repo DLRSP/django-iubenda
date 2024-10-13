@@ -50,8 +50,6 @@ classifiers = [
   "Topic :: Software Development :: Libraries",
 ]
 
-dependencies = {file = ["requirements/requirements.in"]}
-
 [project.optional-dependencies]
 test = [
   "coverage",
@@ -129,7 +127,7 @@ package = "iubenda"
 package_dir = "src"
 filename = "CHANGELOG.rst"
 directory = "news/"
-version = "0.1.12"
+version = "1.7.1"
 
 # For rendering properly for this project
 issue_format = "`#{issue} <https://github.com/DLRSP/django-iubenda/issues/{issue}>`_"

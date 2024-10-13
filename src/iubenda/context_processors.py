@@ -49,19 +49,25 @@ def iubenda(request):
             if cx_iubenda_nonce:
                 context.update({"cx_iubenda_nonce": cx_iubenda_nonce})
 
-            cx_iubenda_autoblocking = getattr(settings, "IUBENDA_AUTOBLOCKING", False)
+            cx_iubenda_autoblocking = getattr(
+                settings, "IUBENDA_AUTOBLOCKING", False)
             if cx_iubenda_nonce:
-                context.update({"cx_iubenda_autoblocking": cx_iubenda_autoblocking})
+                context.update(
+                    {"cx_iubenda_autoblocking": cx_iubenda_autoblocking})
 
             context_cache = cache.set(cache_key, context, timeout=86400)
             return context
         except Iubenda.DoesNotExist as err:
-            logger.error("iubenda: before enable "
-                         "\"iubenda.context_processors.iubenda\" in your settings "
-                         "be sure to configure your Iubenda Site's ID inside the database! {err}")
-            raise ImproperlyConfigured("iubenda: before enable ",
-                                       "\"iubenda.context_processors.iubenda\" in your settings, ",
-                                       f"be sure to configure your Iubenda Site's ID inside the database! {err}") from err
+            logger.error(
+                "iubenda: before enable "
+                '"iubenda.context_processors.iubenda" in your settings '
+                "be sure to configure your Iubenda Site's ID inside the database! %s", err
+            )
+            raise ImproperlyConfigured(
+                "iubenda: before enable ",
+                '"iubenda.context_processors.iubenda" in your settings, ',
+                f"be sure to configure your Iubenda Site's ID inside the database! {err}",
+            ) from err
         except Exception as err:
             logger.error("iubenda: %s", err)
             raise ImproperlyConfigured(err) from err

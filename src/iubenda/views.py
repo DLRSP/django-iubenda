@@ -37,10 +37,10 @@ def privacy(request):
                 .values("iub_policy_id")
                 .get()
             )
-            r = requests.get(
-                f'https://www.iubenda.com/api/privacy-policy/{iubenda["iub_policy_id"]}',
-                params=request.GET,
-            )
+            r = requests.get('https://www.iubenda.com/'
+                             f'api/privacy-policy/{iubenda["iub_policy_id"]}',
+                             params=request.GET,
+                             )
             if r.status_code == 200:
                 context = {"req_privacy": json.loads(r.content)}
 
@@ -74,10 +74,10 @@ def cookie(request):
                 .values("iub_policy_id")
                 .get()
             )
-            r = requests.get(
-                f'https://www.iubenda.com/api/privacy-policy/{iubenda["iub_policy_id"]}/cookie-policy',
-                params=request.GET,
-            )
+            r = requests.get('https://www.iubenda.com'
+                             f'/api/privacy-policy/{iubenda["iub_policy_id"]}/cookie-policy',
+                             params=request.GET,
+                             )
             if r.status_code == 200:
                 context = {"req_cookie": json.loads(r.content)}
 

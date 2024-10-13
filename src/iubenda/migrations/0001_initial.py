@@ -37,11 +37,13 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "iub_site_id",
-                    models.IntegerField(unique=True, verbose_name="Iubenda Site ID"),
+                    models.IntegerField(
+                        unique=True, verbose_name="Iubenda Site ID"),
                 ),
                 (
                     "iub_policy_id",
-                    models.IntegerField(unique=True, verbose_name="Iubenda Policy ID"),
+                    models.IntegerField(
+                        unique=True, verbose_name="Iubenda Policy ID"),
                 ),
                 (
                     "iub_policy_id_it",
