@@ -49,6 +49,12 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Application Frameworks",
   "Topic :: Software Development :: Libraries",
 ]
+dependencies = [
+  "django<5",
+  "django-modeltranslation",
+  "requests",
+  "django_compressor"
+]
 
 [project.optional-dependencies]
 test = [
