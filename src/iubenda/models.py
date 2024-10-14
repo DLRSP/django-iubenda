@@ -7,8 +7,7 @@ class Iubenda(models.Model):
     site = models.ForeignKey(
         Site, verbose_name=_("Django Site"), on_delete=models.CASCADE
     )
-    iub_site_id = models.IntegerField(
-        verbose_name=_("Iubenda Site ID"), unique=True)
+    iub_site_id = models.IntegerField(verbose_name=_("Iubenda Site ID"), unique=True)
     iub_policy_id = models.IntegerField(
         verbose_name=_("Iubenda Policy ID"), unique=True
     )
