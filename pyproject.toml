@@ -64,7 +64,7 @@ lint = [
 package-dir = {"" = "src"}
 
 [tool.setuptools.dynamic]
-dependencies = {file = ["requirements/requirements.in"]}
+dependencies = {file = "requirements/requirements.in"}
 version = {attr = "iubenda.VERSION"}
 readme = {file = "README.md"}
 
