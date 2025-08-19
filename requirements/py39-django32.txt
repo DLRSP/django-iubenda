@@ -145,9 +145,9 @@ rcssmin==1.1.1 \
     --hash=sha256:f15673e97f0a68b4c378c4d15b088fe96d60bc106d278c88829923118833c20f \
     --hash=sha256:f7a1fcdbafaacac0530da04edca4a44303baab430ea42e7d59aece4b3f3e9a51
     # via django-compressor
-requests==2.32.4 \
-    --hash=sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c \
-    --hash=sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422
+requests==2.32.5 \
+    --hash=sha256:2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6 \
+    --hash=sha256:dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf
     # via -r requirements/requirements.in
 rjsmin==1.2.1 \
     --hash=sha256:113132a40ce7d03b2ced4fac215f0297338ed1c207394b739266efab7831988b \
