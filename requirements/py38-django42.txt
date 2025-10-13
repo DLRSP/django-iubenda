@@ -131,9 +131,9 @@ django-modeltranslation==0.19.13 \
     --hash=sha256:69b7dc9a8bae152ab84caf969a5ad478f588f4d9f8345545d4f20f66eeb51ef6 \
     --hash=sha256:df2516fdfb6a865fd1dfdda74e549d437d8ca148c1d435663db36edb6863f34e
     # via -r requirements/requirements.in
-idna==3.10 \
-    --hash=sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9 \
-    --hash=sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
+idna==3.11 \
+    --hash=sha256:771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea \
+    --hash=sha256:795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902
     # via requests
 rcssmin==1.1.2 \
     --hash=sha256:0101a55992ded00220d38ebaf003d0858c1e6e8b365df6f18f9d7a2cdc5574b3 \
