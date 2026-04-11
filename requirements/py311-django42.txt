@@ -151,6 +151,7 @@ django==4.2.30 \
     #   django-appconf
     #   django-compressor
     #   django-modeltranslation
+    #   django-requests-api
 django-appconf==1.2.0 \
     --hash=sha256:15a88d60dd942d6059f467412fe4581db632ef03018a3c183fb415d6fc9e5cec \
     --hash=sha256:b81bce5ef0ceb9d84df48dfb623a32235d941c78cc5e45dbb6947f154ea277f4
@@ -162,6 +163,10 @@ django-compressor==4.6.0 \
 django-modeltranslation==0.19.17 \
     --hash=sha256:13bd9cab4e4aed0bef5624c17a7da2ac8c5538f0650adbd89ce8c878cbef02fd \
     --hash=sha256:fda198c08b4ede0c2fd09b795ab420a04c7b5a868315fdf4aade0d0a526c269f
+    # via -r requirements/requirements.in
+django-requests-api==0.6.2 \
+    --hash=sha256:3aa3bf7dc41ed33d24012f81522583cd2d2d68cba8f9dddfdfe312db127eee07 \
+    --hash=sha256:41fdc9b4409aa16b85d303281295a4112ae2b5d5eed095519757234e9c598e38
     # via -r requirements/requirements.in
 idna==3.11 \
     --hash=sha256:771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea \
@@ -243,7 +248,7 @@ rcssmin==1.2.2 \
 requests==2.33.1 \
     --hash=sha256:18817f8c57c6263968bc123d237e3b8b08ac046f5456bd1e307ee8f4250d3517 \
     --hash=sha256:4e6d1ef462f3626a1f0a0a9c42dd93c63bad33f9f1c1937509b8c5c8718ab56a
-    # via -r requirements/requirements.in
+    # via django-requests-api
 rjsmin==1.2.5 \
     --hash=sha256:07bccbc8cc4ffabf0db0079259a1e4d97880ccb3ffcd1dc012e8640b59b97cc4 \
     --hash=sha256:0d64da3b02f56364fe032608a10e56e5ed5aec4991a173e0b90e1a6e7bc6af58 \
