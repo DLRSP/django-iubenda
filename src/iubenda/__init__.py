@@ -9,7 +9,7 @@ Package layout:
 - ``api`` — policy API helpers built on django-requests-api.
 """
 
-__version__ = "1.7.2"
+__version__ = "1.7.3"
 __version_info__ = tuple(int(i) if i.isdigit() else i for i in __version__.split("."))
 __license__ = "MIT"
 __title__ = "iubenda"
