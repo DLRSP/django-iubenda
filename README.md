@@ -9,7 +9,7 @@
 
 ## GitHub ![GitHub release](https://img.shields.io/github/tag/DLRSP/django-iubenda.svg) ![GitHub release](https://img.shields.io/github/release/DLRSP/django-iubenda.svg)
 
-## Test [![codecov.io](https://codecov.io/github/DLRSP/django-iubenda/coverage.svg?branch=main)](https://codecov.io/github/DLRSP/django-iubenda?branch=main) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/DLRSP/django-iubenda/main.svg)](https://results.pre-commit.ci/latest/github/DLRSP/django-iubenda/main) [![gitthub.com](https://github.com/DLRSP/django-iubenda/actions/workflows/ci.yaml/badge.svg)](https://github.com/DLRSP/django-iubenda/actions/workflows/ci.yaml)
+## Test [![codecov.io](https://codecov.io/github/DLRSP/django-iubenda/coverage.svg?branch=main)](https://codecov.io/github/DLRSP/django-iubenda?branch=main) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/DLRSP/django-iubenda/main.svg)](https://results.pre-commit.ci/latest/github/DLRSP/django-iubenda/main) [![CI](https://github.com/DLRSP/django-iubenda/actions/workflows/ci.yaml/badge.svg)](https://github.com/DLRSP/django-iubenda/actions/workflows/ci.yaml)
 
 ## Compliance for websites and apps
 Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year at Iubenda
@@ -20,19 +20,21 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
 * Check the demo repo on [GitHub](https://github.com/DLRSP/example/tree/django-iubenda)
 
 ## Requirements
--   Python +3.8 supported.
--   Django +3.2 supported.
+-   Python 3.8 or newer.
+-   Django 3.2 or newer (see package metadata for supported releases).
+-   **django-requests-api** (`requests_api`) — shared HTTP client; typical import: `from requests_api import RequestsApi, normalize_api_language, copy_get_params_with_overrides, requests_api_for_base`.
 
 ## Setup
 1. Install from **pip**:
    ```shell
    pip install django-iubenda
    ```
-2. Modify `settings.py` by adding the app to `INSTALLED_APPS`:
+2. Modify `settings.py` by adding the apps to `INSTALLED_APPS` (same pattern as other DLRSP integrations that use **django-requests-api**):
    ```python
    INSTALLED_APPS = (
        "modeltranslation",
        # ...
+       "requests_api",
        "iubenda",
        # ...
    )
@@ -60,7 +62,7 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
        # ...
    )
    ```
-5. Optionally, but sugguested, the Django's Current Site middleware is enabled inside `settings.py`:
+5. Optionally, enable Django’s **CurrentSiteMiddleware** in `settings.py`:
    ```python
    MIDDLEWARE = (
        # ...
@@ -68,13 +70,13 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
        # ...
    )
    ```
-6. Modify `url.py` by adding the app's urls to `urlpatterns`:
+6. In `urls.py`, include the app’s URLconf:
    ```python
    urlpatterns += [
        path("", include("iubenda.urls")),
    ]
    ```
-7. Modify `url.py` by adding the app's sitemaps to `sitemaps`:
+7. Register the app’s sitemaps (for example in `urls.py` or wherever you define `sitemaps`):
    ```python
    from iubenda.sitemaps import PrivacySitemap, CookieSitemap
 
@@ -90,56 +92,67 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
    {% load i18n %}
    {% get_current_language as LANGUAGE_CODE %}
    ```
-9. Modify your project's template to add privacy and cookie policies.
-   For example inside the `footer.html` add following code:
+9. In your base layout or footer template, include the Iubenda fragment—for example in `footer.html`:
    ```html
    {% if not debug %}
        {% block iubenda %}{% include "iubenda/include-content.html" %}{% endblock iubenda %}
    {% endif %}
    ```
 
+## Configuration (`APP_CONFIG` and `IUBENDA_*`)
+
+Options are resolved in **`iubenda.conf`**, consistent with other DLRSP apps (for example **copyai**):
+
+1. Top-level **`IUBENDA_*`** (empty strings are skipped for string settings so the next source can apply).
+2. **`APP_CONFIG["iubenda"]`** — keys such as `API_BASE_URL`, `API_ALLOWED_LANGS`, `API_FALLBACK_LANG`, `API_TIMEOUT`, `USE_COMPRESS`, `OPTIONS`, `GTM`, `CSP_NONCE`, `AUTOBLOCKING`.
+3. Defaults in **`iubenda.defaults`**.
+
+```python
+APP_CONFIG = {
+    "iubenda": {
+        "API_TIMEOUT": 45,
+        "GTM": True,
+        "OPTIONS": {"perPurposeConsent": "true"},
+    },
+}
+```
+
+Full reference: `docs/tutorial/configuration.md` (MkDocs: *Tutorials → Configuration (APP_CONFIG)*). Optional **`APP_CONFIG["requests_api"]`** for django-requests-api is documented in that package; django-iubenda policy API timeouts stay under **`iubenda.conf`** (`IUBENDA_API_TIMEOUT` / `API_TIMEOUT`).
+
 ## Optional
 
 ### Autoblocking
 If Iubenda autoblocking's configurations are implemented in your account,
-the variable `IUBENDA_AUTOBLOCKING` can be set to import the site's script.
+set `IUBENDA_AUTOBLOCKING` or `APP_CONFIG["iubenda"]["AUTOBLOCKING"]` to enable the script.
 ```html
 <script src="https://cs.iubenda.com/autoblocking/{{ cx_iubenda.iub_site_id }}.js"></script>
 ```
 
+### Privacy and cookie API requests
+The privacy and cookie views call Iubenda’s HTTP API with a **`lang`** query parameter aligned to `request.LANGUAGE_CODE` and to the languages your policies support. Values are read via **`iubenda.conf`** (`IUBENDA_API_*` and/or `APP_CONFIG["iubenda"]` keys `API_BASE_URL`, `API_ALLOWED_LANGS`, `API_FALLBACK_LANG`, `API_TIMEOUT`).
+
+- `IUBENDA_API_BASE_URL` / `API_BASE_URL` — base URL for API calls (default: `https://www.iubenda.com`).
+- `IUBENDA_API_ALLOWED_LANGS` / `API_ALLOWED_LANGS` — allowed `lang` values (default: `it`, `en`).
+- `IUBENDA_API_FALLBACK_LANG` / `API_FALLBACK_LANG` — used when the active language is not allowed (default: `en`).
+- `IUBENDA_API_TIMEOUT` / `API_TIMEOUT` — seconds for API HTTP calls (default: `30`).
+
+Use `iubenda.api` for Iubenda-specific helpers (they use `iubenda.conf`), or `from requests_api import …` for the shared client. Tutorials: `docs/tutorial/http-api.md`, `docs/tutorial/configuration.md`.
+
 ### Content Security Policy
-If Content Security Policy are implemented in your server and inline scripts are disabled,
-the variable `IUBENDA_CSP_NONCE` can be set with nonce tag will be inserted script's nonce.
+
+If you use a **Content Security Policy** and block inline scripts unless they carry a nonce, set **`IUBENDA_CSP_NONCE`** or **`APP_CONFIG["iubenda"]["CSP_NONCE"]`** so django-iubenda can render script tags with a `nonce` attribute. Your server or middleware must issue a fresh nonce per response and pass it into templates like your other inline scripts.
+
 ```html
 <script {% if cx_iubenda_nonce %}nonce="{{ cx_iubenda_nonce }}"{% endif %}>
 ```
-Inside your webserver's configurations, a rule to dynamically replace your CONSTANT nonce in a random string is needed.
 
-To allow  external source from Iubenda domains, please implement these rules:
-```editorconfig
-Content-Security-Policy:
-    script-src-elem https://*.iubenda.com";
-    img-src https://*.iubenda.com data:";
-    style-src https://*.iubenda.com";
-    connect-src https://*.iubenda.com";
-    frame-src https://*.iubenda.com";
-```
+Allow Iubenda hosts in the relevant CSP directives (`script-src`, `connect-src`, `img-src`, `style-src`, `frame-src`, etc.). Details depend on your stack; use Iubenda’s guide and your browser console. If you avoid `'unsafe-inline'`, you may need hash sources for specific snippets.
 
-If you prefer to not allow ***unsafe-inline*** inside your CSP, please also add the two specific hash for your
-script prompted as error in Javascript Console.
-```editorconfig
-# Iubenda Privacy And Cookie Policy - API
-Content-Security-Policy:
-    ...
-    script-src-elem https://*.iubenda.com 'sha256-YOUR-FIRST-HASH-PROMPTED-INSIDE-CONSOLE' 'sha256-YOUR-SECOND-HASH-PROMPTED-INSIDE-CONSOLE';
-    ...
-```
+[Iubenda: Content Security Policy and iubenda scripts](https://www.iubenda.com/en/help/12260-how-to-configure-content-security-policy-to-allow-iubenda-scripts-to-execute)
 
-Check this article from [Iubenda help](https://www.iubenda.com/it/help/12347-come-configurare-il-content-security-policy-per-consentire-lesecuzione-degli-script-di-iubenda)
+### Iubenda options
 
-### Iubenda's Options
-
-To personalize the Iubenda script's behaviour, the dict `IUBENDA_OPTIONS` can be configured inside `settings.py`
+Set **`IUBENDA_OPTIONS`** or **`APP_CONFIG["iubenda"]["OPTIONS"]`** in `settings.py`:
 ```python
 IUBENDA_OPTIONS = {
     "countryDetection": "true",
@@ -173,7 +186,7 @@ IUBENDA_OPTIONS = {
 
 ### Integration with Google Tag Manager
 If Google Tag Manager is implemented in your application and all needed settings were configured inside the container,
-the variable `IUBENDA_GTM` can be set with the value `True` and the Iubenda's callback will be inserted inside the script.
+set `IUBENDA_GTM = True` or `APP_CONFIG["iubenda"]["GTM"] = True` so the Iubenda callback is inserted into the script.
 
 For needed configuration inside Google Tag Manager container, please refer to these notes:
 - [Google Consent Mode](https://www.iubenda.com/en/help/27137-google-consent-mode)

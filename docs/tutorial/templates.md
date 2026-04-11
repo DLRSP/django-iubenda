@@ -1,33 +1,29 @@
 # Templates
 
-You can overwrite each page's template by create your own html file inside `example/templates/errors/404.html`
+You can override django-iubenda’s templates from your project by placing files under your templates directory using the same paths as the app.
 
-You can also overwrite one or all page's template by settings your own html file inside `settings`
+## App template names
 
-``` python title="settings.py"
-# Custom Templates for all errors page inside the root's templates of my app
-TEMPLATE_ERROR_ALL = "general_errors_page.html"
+Under `iubenda/templates/iubenda/` the package ships:
 
-# Custom Templates for only 404 error's inside the root's templates of my app
-TEMPLATE_ERROR_404 = "other_error_page.html"
+| Template | Purpose |
+|----------|---------|
+| `privacy.html` / `privacy-compress.html` | Privacy policy page (`IUBENDA_USE_COMPRESS` selects the compressed variant). |
+| `cookie.html` / `cookie-compress.html` | Cookie policy page. |
+| `include-content.html` | Fragment included in the site footer (or elsewhere) for scripts and policy links. |
 
-# Custom Templates for only 405 error's inside the custom_app's templates
-TEMPLATE_ERROR_405 = "custom_app/another_error_page.html"
+## Override in your project
+
+1. Ensure your `TEMPLATES` `DIRS` includes a folder that wins over app templates (for example `templates/` at the project root).
+2. Copy the file you need and edit it, keeping the path:
+
+```text
+your_project/templates/iubenda/privacy.html
+your_project/templates/iubenda/include-content.html
 ```
 
-All available `settings` variables are:
-``` python title="settings.py"
-TEMPLATE_ERROR_ALL = "errors/errors.html"
-TEMPLATE_ERROR_400 = "errors/400.html"
-TEMPLATE_ERROR_403 = "errors/403.html"
-TEMPLATE_ERROR_404 = "errors/404.html"
-TEMPLATE_ERROR_405 = "errors/405.html"
-TEMPLATE_ERROR_500 = "errors/500.html"
-```
+Django resolves templates in app order and `DIRS` first (depending on your `OPTIONS`), so a file in your project with the path `iubenda/privacy.html` overrides the packaged version.
 
-The order to find template is:
+## Compressor
 
-1. Custom template for specific error page (example: `settings.TEMPLATE_ERROR_404`)
-2. Custom template for all errors page (example: `settings.TEMPLATE_ERROR_ALL`)
-3. Custom template for specific error page by to overwrite default (example: `example/templates/errors/404.html`)
-4. Default template for specific error page
+When `django_compressor` is enabled and **`USE_COMPRESS`** / **`IUBENDA_USE_COMPRESS`** is true (via `iubenda.conf`, including `APP_CONFIG["iubenda"]`), the views render `*-compress.html` templates. Override those if you customize the compressed pipeline.

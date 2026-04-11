@@ -4,12 +4,17 @@ Context processors for Iubenda app
 
 import logging
 
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 
+from .conf import (
+    get_iubenda_autoblocking,
+    get_iubenda_csp_nonce,
+    get_iubenda_gtm,
+    get_iubenda_options,
+)
 from .models import Iubenda
 
 logger = logging.getLogger(__name__)
@@ -37,20 +42,20 @@ def iubenda(request):
                 .get(),
             }
 
-            cx_iubenda_options = getattr(settings, "IUBENDA_OPTIONS", False)
+            cx_iubenda_options = get_iubenda_options()
             if cx_iubenda_options:
                 context.update({"cx_iubenda_options": cx_iubenda_options})
 
-            cx_iubenda_gtm = getattr(settings, "IUBENDA_GTM", False)
+            cx_iubenda_gtm = get_iubenda_gtm()
             if cx_iubenda_gtm:
                 context.update({"cx_iubenda_gtm": cx_iubenda_gtm})
 
-            cx_iubenda_nonce = getattr(settings, "IUBENDA_CSP_NONCE", False)
+            cx_iubenda_nonce = get_iubenda_csp_nonce()
             if cx_iubenda_nonce:
                 context.update({"cx_iubenda_nonce": cx_iubenda_nonce})
 
-            cx_iubenda_autoblocking = getattr(settings, "IUBENDA_AUTOBLOCKING", False)
-            if cx_iubenda_nonce:
+            cx_iubenda_autoblocking = get_iubenda_autoblocking()
+            if cx_iubenda_autoblocking:
                 context.update({"cx_iubenda_autoblocking": cx_iubenda_autoblocking})
 
             context_cache = cache.set(cache_key, context, timeout=86400)

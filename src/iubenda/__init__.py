@@ -1,5 +1,12 @@
 """
 See PEP 386 (https://peps.python.org/pep-0386/)
+
+Package layout:
+
+- ``defaults`` — static defaults for API URLs, languages, timeouts, compressor flag.
+- ``conf`` — resolved settings: top-level ``IUBENDA_*`` → ``APP_CONFIG['iubenda']`` → defaults
+  (same pattern as ``copyai.conf`` / ``APP_CONFIG['copyai']``).
+- ``api`` — policy API helpers built on django-requests-api.
 """
 
 __version__ = "1.7.2"

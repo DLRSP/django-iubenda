@@ -1,6 +1,6 @@
 site_name: django-iubenda
 site_url: https://github.com/DLRSP/django-iubenda/
-site_description: Django application for handling the server errors.
+site_description: Django application for Iubenda privacy and cookie policies.
 
 repo_name: DLRSP/django-iubenda
 repo_url: https://github.com/DLRSP/django-iubenda/
@@ -8,8 +8,6 @@ repo_url: https://github.com/DLRSP/django-iubenda/
 theme:
     name: 'material'
     palette:
-#      - primary: 'black'
-#      - accent: 'indigo'
       - scheme: default
         toggle:
           icon: material/weather-sunny
@@ -57,18 +55,16 @@ markdown_extensions:
  - pymdownx.snippets:
 
 nav:
- - Quickstart: 'index.md'
+ - Home: 'index.md'
  - Tutorials:
-    - 'Example': 'tutorial/example.md'
-    - 'Customize':
-      - 'Templates': 'tutorial/templates.md'
-      - 'Images': 'tutorial/images.md'
-      - 'Alert': 'tutorial/alert.md'
-      - 'Google': 'tutorial/google.md'
+    - 'Example project': 'tutorial/example.md'
+    - 'Customize overview': 'tutorial/customize.md'
+    - 'Configuration (APP_CONFIG)': 'tutorial/configuration.md'
+    - 'Templates': 'tutorial/templates.md'
+    - 'HTTP client & policy API': 'tutorial/http-api.md'
+    - 'Google Tag Manager': 'tutorial/google-gtm.md'
  - Community:
-    - 'Status Codes': 'community/status_code.md'
-    - 'References': 'community/references.md'
     - 'Contributing': 'community/contributing.md'
-    - 'Third-Party-Packages': 'community/third-party-packages.md'
+    - 'References': 'community/references.md'
 
 copyright: Copyright &copy; 2010-present DLRSP

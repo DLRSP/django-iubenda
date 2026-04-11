@@ -96,4 +96,10 @@ class IubendaTestCase(TransactionTestCase):
         response = self.client.get("/privacy-policy/", follow=True)
         LOGGER.debug(response)
         self.assertEqual(200, response.status_code)
-        self.assertNotContains(response, "autoblocking")
+        self.assertContains(response, "cs.iubenda.com/autoblocking/")
+
+    @override_settings(APP_CONFIG={"iubenda": {"GTM": True}})
+    def test_gtm_from_app_config(self):
+        response = self.client.get("/privacy-policy/", follow=True)
+        self.assertEqual(200, response.status_code)
+        self.assertContains(response, "googleConsentMode")

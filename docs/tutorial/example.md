@@ -1,26 +1,23 @@
-# Example
+# Example project
 
-Create a simple App to allow admin users wrap Django errors.
+The reference demo uses the **[DLRSP/example](https://github.com/DLRSP/example)** repository on the **`django-iubenda`** branch. It shows a minimal Django site with `iubenda` and `requests_api` installed, policy URLs, and the usual Iubenda context processor.
 
-## Project setup
-
-Clone the Django project named `example`
+## Clone and run
 
 ```shell
-# Clone the example's project repository
-git clone --depth=50 --branch=django-iubenda https://github.com/DLRSP/example.git example-errors
-cd example-errors
+git clone --depth=50 --branch=django-iubenda https://github.com/DLRSP/example.git example-iubenda
+cd example-iubenda
 
-# Create a virtual environment to isolate our package dependencies locally
 python -m venv env
-source env/bin/activate  # On Windows use `env\Scripts\activate`
+source env/bin/activate
+# On Windows: env\Scripts\activate
 
-# Install Django and django-iubenda into the virtual environment
 pip install -r requirements/py38-django32.txt
 
-# Now sync your database for the first time
 python manage.py migrate
-
-# Run the local server
 python manage.py runserver
 ```
+
+Adjust the `requirements/*.txt` file to match your Python and Django versions if needed.
+
+Then open [http://127.0.0.1:8000](http://127.0.0.1:8000) and use the privacy and cookie policy routes provided by django-iubenda (see the main [installation guide](../index.md#installation)).

@@ -1,48 +1,33 @@
 [build-system]
-requires = ["setuptools >= 40.8.0", "wheel", "django < 5"]
+requires = ["setuptools >= 61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-iubenda"
-description = "Django''s application for handling privacy and cookie policies configured with Iubenda."
+description = "Django application for handling privacy and cookie policies configured with Iubenda."
 authors = [
-    {name = "DLRSP", email = "dlrsp.dev@gmail.com"},
+    { name = "DLRSP", email = "dlrsp.dev@gmail.com" },
 ]
 requires-python = ">=3.8"
 dynamic = ["dependencies", "version"]
 readme = "README.md"
-license = {file = "LICENSE"}
-keywords = ["django", "iubenda", "privacy","cookie"]
+license = { file = "LICENSE" }
+keywords = ["django", "iubenda", "privacy", "cookie"]
 classifiers = [
-  #   3 - Alpha
-  #   4 - Beta
-  #   5 - Production/Stable
   "Development Status :: 5 - Production/Stable",
-
-  # Indicate who your project is intended for
   "Intended Audience :: Developers",
-
-  # Pick your license
   "License :: OSI Approved :: MIT License",
-
-  # Specify the Python versions
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
-
-  # Specify the Django versions
   "Framework :: Django",
   "Framework :: Django :: 3.2",
   "Framework :: Django :: 4.2",
-
-  # Specify the OS/Environment info
   "Environment :: Web Environment",
   "Operating System :: OS Independent",
-
-  # Specify the optional Topic
   "Topic :: Internet :: WWW/HTTP",
   "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
   "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
@@ -50,26 +35,33 @@ classifiers = [
   "Topic :: Software Development :: Libraries",
 ]
 
+[project.urls]
+Homepage = "https://github.com/DLRSP/django-iubenda"
+
 [project.optional-dependencies]
 test = [
   "coverage",
-  "codecov"
+  "codecov",
 ]
 lint = [
   "black",
-  "flake8"
+  "flake8",
 ]
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = { "" = "src" }
+include-package-data = true
+zip-safe = false
 
 [tool.setuptools.dynamic]
-dependencies = {file = "requirements/requirements.in"}
-version = {attr = "iubenda.VERSION"}
-readme = {file = "README.md"}
+dependencies = { file = "requirements/requirements.in" }
+version = { attr = "iubenda.__version__" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.distutils.bdist_wheel]
+universal = false
 
 [tool.black]
 target-version = ['py311']
@@ -115,10 +107,12 @@ fail_under = 100
 max-line-length = 120
 exclude = [
     ".git",
-    "__pycache__"
+    "__pycache__",
 ]
 extend-ignore = [
-    "E203","E501","W503"
+    "E203",
+    "E501",
+    "W503",
 ]
 count = true
 
@@ -127,30 +121,22 @@ package = "iubenda"
 package_dir = "src"
 filename = "CHANGELOG.rst"
 directory = "news/"
-version = "1.7.1"
 
-# For rendering properly for this project
 issue_format = "`#{issue} <https://github.com/DLRSP/django-iubenda/issues/{issue}>`_"
-# template = "tools/news/template.rst"
 
-# Grouping of entries, within our changelog
 type = [
-  { name = "Process",                   directory = "process", showcontent = true },
+  { name = "Process", directory = "process", showcontent = true },
   { name = "Deprecations and Removals", directory = "removal", showcontent = true },
-  { name = "Features",                  directory = "feature", showcontent = true },
-  { name = "Bug Fixes",                 directory = "bugfix",  showcontent = true },
-  { name = "Vendored Libraries",        directory = "vendor",  showcontent = true },
-  { name = "Improved Documentation",    directory = "doc",     showcontent = true },
-  { name = "Trivial Changes",           directory = "trivial", showcontent = false },
+  { name = "Features", directory = "feature", showcontent = true },
+  { name = "Bug Fixes", directory = "bugfix", showcontent = true },
+  { name = "Vendored Libraries", directory = "vendor", showcontent = true },
+  { name = "Improved Documentation", directory = "doc", showcontent = true },
+  { name = "Trivial Changes", directory = "trivial", showcontent = false },
 ]
 
-# bump-my-version
 [tool.bumpversion]
 current_version = "1.7.2"
 allow_dirty = true
-
-[[tool.bumpversion.files]]
-filename = "./setup.cfg"
 
 [[tool.bumpversion.files]]
 filename = "./src/iubenda/__init__.py"

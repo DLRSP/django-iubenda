@@ -1,4 +1,7 @@
 import os
+import shutil
+import subprocess
+import sys
 from distutils.cmd import Command
 from distutils.command.build import build as _build
 
@@ -11,7 +14,10 @@ except ImportError:
 
 
 class CompileTranslations(Command):
-    description = "compile message catalogs to MO files via django compilemessages"
+    description = (
+        "compile gettext .po under src/iubenda/locale to .mo via msgfmt --check-format "
+        "(same flags as django compilemessages; requires GNU gettext)"
+    )
     user_options = []  # type: list
 
     def initialize_options(self):
@@ -21,12 +27,27 @@ class CompileTranslations(Command):
         pass
 
     def run(self):
-        curdir = os.getcwd()
-        os.chdir(os.path.realpath(os.path.join("src", "iubenda")))
-        from django.core.management import call_command
-
-        call_command("compilemessages")
-        os.chdir(curdir)
+        msgfmt = shutil.which("msgfmt")
+        root = os.path.dirname(os.path.abspath(__file__))
+        locale_root = os.path.join(root, "src", "iubenda", "locale")
+        if not os.path.isdir(locale_root):
+            return
+        if not msgfmt:
+            print(
+                "msgfmt not found; skipping .mo compilation (use checked-in .mo or install gettext)",
+                file=sys.stderr,
+            )
+            return
+        for dirpath, _dirnames, filenames in os.walk(locale_root):
+            for name in filenames:
+                if not name.endswith(".po"):
+                    continue
+                po_path = os.path.join(dirpath, name)
+                mo_path = po_path[:-3] + ".mo"
+                subprocess.run(
+                    [msgfmt, "--check-format", "-o", mo_path, po_path],
+                    check=True,
+                )
 
 
 class Build(_build):

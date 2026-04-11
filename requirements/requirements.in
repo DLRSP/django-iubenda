@@ -1,4 +1,4 @@
 django
 django-modeltranslation
-requests
+django-requests-api
 django_compressor

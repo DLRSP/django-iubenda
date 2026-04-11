@@ -72,34 +72,19 @@ pre-commit install
 
 ## Translation
 
-To run the translation, clone the repository, go inside the package directory, and then:
+Translations for the `iubenda` app live under `src/iubenda/locale/`. After editing `.po` files, compile them from a Django project that has `iubenda` installed, for example:
 
 ``` shell
-cd src/django_errors
-django-admin makemessages -l it
-django-admin makemessages -d djangojs -l it
+django-admin compilemessages
 ```
 
-Modify the .po file for your locale, and then:
-
-``` shell
-django-admin compilemessages -l it
-```
-
-Contribute with your translation, test it in your local example and then push the commit as "Pull request"
+Use `makemessages` from the same environment if you add new translatable strings. Open a pull request with updated `.po` / `.mo` files when ready.
 
 ## Testing
 
-To run the tests, clone the repository, and then:
+To run the tests, clone the repository, install dependencies (see `requirements/` and the package metadata), set `PYTHONPATH` to include `src` if needed, then:
 
 ``` shell
-# Setup the virtual environment
-python -m venv env
-source env/bin/activate
-pip install django
-pip install -r requirements/requirements.in
-
-# Run the tests
 python runtests.py
 ```
 
@@ -151,11 +136,7 @@ GitHub's documentation for working on pull requests is [available here][pull-req
 
 Always run the tests before submitting pull requests, and ideally run `tox` in order to check that your modifications are compatible on all supported versions of Python and Django.
 
-Once you've made a pull request take a look at the build status in the GitHub interface and make sure the tests are running as you'd expect.
-
-![Build status][build-status]
-
-*Above: build notifications*
+Once you've made a pull request, check the GitHub Actions workflow for this repository and ensure the tests pass.
 
 ## Managing compatibility issues
 
@@ -228,7 +209,7 @@ This style helps keep the documentation source consistent and readable.
 If you are hyperlinking to another document, you should use a relative link, and link to the `.md` suffix.  For example:
 
 ``` markdown
-[authentication]: ../api-guide/authentication.md
+[templates]: ../tutorial/templates.md
 ```
 
 
@@ -252,7 +233,6 @@ If you want to draw attention to a note or warning, use a pair of enclosing line
 [discussions]: https://github.com/DLRSP/django-iubenda/discussions
 [issues]: https://github.com/DLRSP/django-iubenda/issues?state=open
 [pep-8]: https://www.python.org/dev/peps/pep-0008/
-[build-status]: ../img/build-status.png
 [pull-requests]: https://help.github.com/articles/using-pull-requests
 [tox]: https://tox.readthedocs.io/en/latest/
 [markdown]: https://daringfireball.net/projects/markdown/basics
