@@ -10,25 +10,31 @@
       
       
       
+        <link rel="canonical" href="https://github.com/DLRSP/django-iubenda/tutorial/http-api/">
       
+      
+        <link rel="prev" href="../templates/">
+      
+      
+        <link rel="next" href="../google-gtm/">
       
       
         
       
       
-      <link rel="icon" href="/DLRSP/django-iubenda/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>django-iubenda</title>
+        <title>HTTP client & policy API - django-iubenda</title>
       
     
     
-      <link rel="stylesheet" href="/DLRSP/django-iubenda/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/DLRSP/django-iubenda/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -47,7 +53,7 @@
       
     
     
-    <script>__md_scope=new URL("/DLRSP/django-iubenda/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -81,6 +87,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#http-client-and-policy-api" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -93,7 +104,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/DLRSP/django-iubenda/." title="django-iubenda" class="md-header__button md-logo" aria-label="django-iubenda" data-md-component="logo">
+    <a href="../.." title="django-iubenda" class="md-header__button md-logo" aria-label="django-iubenda" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -113,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              HTTP client & policy API
             
           </span>
         </div>
@@ -231,7 +242,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/DLRSP/django-iubenda/." title="django-iubenda" class="md-nav__button md-logo" aria-label="django-iubenda" data-md-component="logo">
+    <a href="../.." title="django-iubenda" class="md-nav__button md-logo" aria-label="django-iubenda" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -261,7 +272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -285,18 +296,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -317,7 +330,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -335,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/tutorial/example/" class="md-nav__link">
+      <a href="../example/" class="md-nav__link">
         
   
   
@@ -363,7 +376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/tutorial/customize/" class="md-nav__link">
+      <a href="../customize/" class="md-nav__link">
         
   
   
@@ -391,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/tutorial/configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   
@@ -419,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/tutorial/templates/" class="md-nav__link">
+      <a href="../templates/" class="md-nav__link">
         
   
   
@@ -444,10 +457,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/tutorial/http-api/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP client & policy API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -463,6 +503,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public imports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-and-app_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings (and APP_CONFIG)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpers-in-iubendaapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helpers in iubenda.api
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusing-the-same-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusing the same building blocks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -475,7 +601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/tutorial/google-gtm/" class="md-nav__link">
+      <a href="../google-gtm/" class="md-nav__link">
         
   
   
@@ -557,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/community/contributing/" class="md-nav__link">
+      <a href="../../community/contributing/" class="md-nav__link">
         
   
   
@@ -585,7 +711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DLRSP/django-iubenda/community/references/" class="md-nav__link">
+      <a href="../../community/references/" class="md-nav__link">
         
   
   
@@ -630,6 +756,82 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public imports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-and-app_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings (and APP_CONFIG)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpers-in-iubendaapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helpers in iubenda.api
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusing-the-same-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusing the same building blocks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -642,8 +844,137 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="http-client-and-policy-api"><a class="toclink" href="#http-client-and-policy-api">HTTP client and policy API</a></h1>
+<p>This tutorial describes how django-iubenda loads <strong>privacy</strong> and <strong>cookie</strong> policy content from Iubenda’s HTTP API, and how you can reuse the same patterns in your own code.</p>
+<h2 id="overview"><a class="toclink" href="#overview">Overview</a></h2>
+<ul>
+<li>Policy pages are built from JSON returned by Iubenda’s public endpoints.</li>
+<li>Outbound calls use <strong><a href="https://pypi.org/project/django-requests-api/">django-requests-api</a></strong> (<code>requests_api</code>): a small client with a configurable base URL and optional shared instances per host.</li>
+<li>Query parameters sent to the API are built from the incoming Django request: existing GET keys are preserved, and <strong><code>lang</code></strong> is set from the active locale using a safe, configurable mapping.</li>
+</ul>
+<p>Install dependencies as documented for your django-iubenda version (see the project <code>requirements</code> / packaging metadata). Register <strong><code>requests_api</code></strong> and <strong><code>iubenda</code></strong> in <code>INSTALLED_APPS</code> (see <a href="../../#installation">Installation</a>).</p>
+<h2 id="public-imports"><a class="toclink" href="#public-imports">Public imports</a></h2>
+<p>Prefer importing from the <strong><code>requests_api</code></strong> package namespace:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">requests_api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RequestsApi</span><span class="p">,</span>
+    <span class="n">copy_get_params_with_overrides</span><span class="p">,</span>
+    <span class="n">normalize_api_language</span><span class="p">,</span>
+    <span class="n">requests_api_for_base</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>django-iubenda’s own glue lives in <strong><code>iubenda.api</code></strong> (see below).</p>
+<h2 id="settings-and-app_config"><a class="toclink" href="#settings-and-app_config">Settings (and <code>APP_CONFIG</code>)</a></h2>
+<p>Values are resolved by <strong><code>iubenda.conf</code></strong>: top-level <code>IUBENDA_*</code> first (non-empty strings), then <strong><code>APP_CONFIG["iubenda"]</code></strong> (keys <code>API_BASE_URL</code>, <code>API_ALLOWED_LANGS</code>, <code>API_FALLBACK_LANG</code>, <code>API_TIMEOUT</code>), then defaults. See <a href="../configuration/">Configuration</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Setting / <code>APP_CONFIG</code> key</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IUBENDA_API_BASE_URL</code> / <code>API_BASE_URL</code></td>
+<td><code>https://www.iubenda.com</code></td>
+<td>Base URL for Iubenda API requests.</td>
+</tr>
+<tr>
+<td><code>IUBENDA_API_ALLOWED_LANGS</code> / <code>API_ALLOWED_LANGS</code></td>
+<td><code>it</code>, <code>en</code></td>
+<td>Iterable of <code>lang</code> values your policies support.</td>
+</tr>
+<tr>
+<td><code>IUBENDA_API_FALLBACK_LANG</code> / <code>API_FALLBACK_LANG</code></td>
+<td><code>en</code></td>
+<td><code>lang</code> when the active Django language is not in the allowed set.</td>
+</tr>
+<tr>
+<td><code>IUBENDA_API_TIMEOUT</code> / <code>API_TIMEOUT</code></td>
+<td><code>30</code></td>
+<td>Timeout (seconds) for each API call.</td>
+</tr>
+</tbody>
+</table>
+<p>Adjust the language settings if your Iubenda account publishes policies in more languages.</p>
+<p><strong>django-requests-api</strong> also supports <strong><code>APP_CONFIG["requests_api"]</code></strong> and <strong><code>REQUESTS_API_*</code></strong> for client cache size and an optional default-timeout helper. Those settings do <strong>not</strong> override <strong><code>IUBENDA_API_TIMEOUT</code></strong> / <strong><code>API_TIMEOUT</code></strong> for policy requests; those stay in <strong><code>iubenda.conf</code></strong>. See <a href="../configuration/">Configuration</a>.</p>
+<h2 id="helpers-in-iubendaapi"><a class="toclink" href="#helpers-in-iubendaapi">Helpers in <code>iubenda.api</code></a></h2>
+<p>These functions use <strong><code>iubenda.conf</code></strong> (so <code>APP_CONFIG["iubenda"]</code> and <code>IUBENDA_*</code> both apply) and compose the HTTP client and query string:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">iubenda.api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">api_request_timeout</span><span class="p">,</span>
+    <span class="n">get_iubenda_client</span><span class="p">,</span>
+    <span class="n">iubenda_request_params</span><span class="p">,</span>
+    <span class="n">normalize_iubenda_lang</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><strong><code>normalize_iubenda_lang</code></strong> — maps a Django language code to an allowed API <code>lang</code>.</li>
+<li><strong><code>iubenda_request_params</code></strong> — copy of <code>request.GET</code> with <code>lang</code> set from <code>request.LANGUAGE_CODE</code>.</li>
+<li><strong><code>get_iubenda_client</code></strong> — shared client for the configured API base URL.</li>
+<li><strong><code>api_request_timeout</code></strong> — timeout from <code>iubenda.conf</code>.</li>
+</ul>
+<h2 id="reusing-the-same-building-blocks"><a class="toclink" href="#reusing-the-same-building-blocks">Reusing the same building blocks</a></h2>
+<p>For other HTTP integrations, you can combine the django-requests-api helpers with your own <code>allowed</code> / <code>fallback</code> and base URL:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">requests_api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">copy_get_params_with_overrides</span><span class="p">,</span>
+    <span class="n">normalize_api_language</span><span class="p">,</span>
+    <span class="n">requests_api_for_base</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">lang</span> <span class="o">=</span> <span class="n">normalize_api_language</span><span class="p">(</span>
+    <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;LANGUAGE_CODE&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">allowed</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;it&quot;</span><span class="p">,</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span> <span class="s2">&quot;de&quot;</span><span class="p">),</span>
+    <span class="n">fallback</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">copy_get_params_with_overrides</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="n">lang</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">requests_api_for_base</span><span class="p">(</span><span class="s2">&quot;https://api.example.com&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;v1/resource&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="caching"><a class="toclink" href="#caching">Caching</a></h2>
+<p>django-iubenda caches successful API responses per normalized language. After changing API-related settings, <code>APP_CONFIG["iubenda"]</code>, or policy configuration, you may need to clear the cache (or wait for TTL) so all workers serve fresh content.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2026-04-12
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+  
+
+
+
+
+                
               </article>
             </div>
           
@@ -724,10 +1055,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/DLRSP/django-iubenda/", "features": ["navigation.instant", "navigation.top", "content.code.annotate", "content.tabs.link", "search.suggest", "search.highlight"], "search": "/DLRSP/django-iubenda/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.top", "content.code.annotate", "content.tabs.link", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/DLRSP/django-iubenda/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
