@@ -20,7 +20,9 @@ class NormalizeIubendaLangTests(SimpleTestCase):
     def test_none_uses_fallback(self):
         self.assertEqual(normalize_iubenda_lang(None), "en")
 
-    @override_settings(IUBENDA_API_ALLOWED_LANGS=("de", "fr"), IUBENDA_API_FALLBACK_LANG="de")
+    @override_settings(
+        IUBENDA_API_ALLOWED_LANGS=("de", "fr"), IUBENDA_API_FALLBACK_LANG="de"
+    )
     def test_custom_allowed_and_fallback(self):
         self.assertEqual(normalize_iubenda_lang("de-at"), "de")
         self.assertEqual(normalize_iubenda_lang("it"), "de")
@@ -56,7 +58,9 @@ class AppConfigApiTests(SimpleTestCase):
 
 
 @override_settings(
-    APP_CONFIG={"iubenda": {"API_ALLOWED_LANGS": ("de", "fr"), "API_FALLBACK_LANG": "de"}}
+    APP_CONFIG={
+        "iubenda": {"API_ALLOWED_LANGS": ("de", "fr"), "API_FALLBACK_LANG": "de"}
+    }
 )
 class AppConfigLangTests(SimpleTestCase):
     def test_allowed_langs_from_app_config(self):

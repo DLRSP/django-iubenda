@@ -65,11 +65,14 @@ def _get_str(
 
 
 def get_iubenda_api_base_url() -> str:
-    return _get_str(
-        "IUBENDA_API_BASE_URL",
-        ("API_BASE_URL", "IUBENDA_API_BASE_URL"),
-        defaults.API_BASE_URL,
-    ).strip() or defaults.API_BASE_URL
+    return (
+        _get_str(
+            "IUBENDA_API_BASE_URL",
+            ("API_BASE_URL", "IUBENDA_API_BASE_URL"),
+            defaults.API_BASE_URL,
+        ).strip()
+        or defaults.API_BASE_URL
+    )
 
 
 def get_iubenda_api_allowed_langs() -> frozenset[str]:
@@ -84,11 +87,15 @@ def get_iubenda_api_allowed_langs() -> frozenset[str]:
 
 
 def get_iubenda_api_fallback_lang() -> str:
-    fb = _get_str(
-        "IUBENDA_API_FALLBACK_LANG",
-        ("API_FALLBACK_LANG", "IUBENDA_API_FALLBACK_LANG"),
-        defaults.API_FALLBACK_LANG,
-    ).strip().lower()
+    fb = (
+        _get_str(
+            "IUBENDA_API_FALLBACK_LANG",
+            ("API_FALLBACK_LANG", "IUBENDA_API_FALLBACK_LANG"),
+            defaults.API_FALLBACK_LANG,
+        )
+        .strip()
+        .lower()
+    )
     return fb or defaults.API_FALLBACK_LANG
 
 
