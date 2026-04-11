@@ -135,7 +135,7 @@ type = [
 ]
 
 [tool.bumpversion]
-current_version = "1.8.3"
+current_version = "1.7.4"
 allow_dirty = true
 
 [[tool.bumpversion.files]]
