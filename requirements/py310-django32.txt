@@ -167,9 +167,9 @@ django-requests-api==0.6.2 \
     --hash=sha256:3aa3bf7dc41ed33d24012f81522583cd2d2d68cba8f9dddfdfe312db127eee07 \
     --hash=sha256:41fdc9b4409aa16b85d303281295a4112ae2b5d5eed095519757234e9c598e38
     # via -r requirements/requirements.in
-idna==3.14 \
-    --hash=sha256:466d810d7a2cc1022bea9b037c39728d51ae7dad40d480fc9b7d7ecf98ba8ee3 \
-    --hash=sha256:e677eaf072e290f7b725f9acf0b3a2bd55f9fd6f7c70abe5f0e34823d0accf69
+idna==3.15 \
+    --hash=sha256:048adeaf8c2d788c40fee287673ccaa74c24ffd8dcf09ffa555a2fbb59f10ac8 \
+    --hash=sha256:ca962446ea538f7092a95e057da437618e886f4d349216d2b1e294abfdb65fdc
     # via requests
 pytz==2026.2 \
     --hash=sha256:04156e608bee23d3792fd45c94ae47fae1036688e75032eea2e3bf0323d1f126 \
