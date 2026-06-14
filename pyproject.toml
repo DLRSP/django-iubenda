@@ -48,11 +48,11 @@ classifiers = [
 Homepage = "https://github.com/DLRSP/django-iubenda"
 
 [project.optional-dependencies]
-test = [
+testing = [
   "coverage",
   "codecov",
 ]
-lint = [
+linting = [
   "black",
   "flake8",
 ]
