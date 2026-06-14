@@ -29,7 +29,9 @@ class IubendaTestCase(TransactionTestCase):
         self.assertEqual(200, response.status_code)
         self.assertContains(response, '"countryDetection": false')
 
-    @override_settings(IUBENDA_OPTIONS={"askConsentAtCookiePolicyUpdate": "false"})
+    @override_settings(
+        IUBENDA_OPTIONS={"askConsentAtCookiePolicyUpdate": "false"}
+    )
     def test_askConsentAtCookiePolicyUpdate(self):
         """Test custom option's value: askConsentAtCookiePolicyUpdate"""
         LOGGER.debug("Tests tearDown")

@@ -79,10 +79,14 @@ def get_iubenda_api_allowed_langs() -> frozenset[str]:
     if hasattr(settings, "IUBENDA_API_ALLOWED_LANGS"):
         raw = settings.IUBENDA_API_ALLOWED_LANGS
         if raw is not None:
-            return frozenset(str(x).strip().lower() for x in raw if str(x).strip())
+            return frozenset(
+                str(x).strip().lower() for x in raw if str(x).strip()
+            )
     nested = _app_config_iubenda().get("API_ALLOWED_LANGS")
     if nested is not None:
-        return frozenset(str(x).strip().lower() for x in nested if str(x).strip())
+        return frozenset(
+            str(x).strip().lower() for x in nested if str(x).strip()
+        )
     return frozenset(defaults.API_ALLOWED_LANGS)
 
 
