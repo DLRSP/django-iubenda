@@ -20,7 +20,7 @@ Click [here](http://iubenda.refr.cc/dlrspapi) and get 10% discount on first year
 * Check the demo repo on [GitHub](https://github.com/DLRSP/example/tree/django-iubenda)
 
 ## Requirements
--   Python 3.8 or newer.
+-   Python 3.9 or newer.
 -   Django 3.2 or newer (see package metadata for supported releases).
 -   **django-requests-api** (`requests_api`) — shared HTTP client; typical import: `from requests_api import RequestsApi, normalize_api_language, copy_get_params_with_overrides, requests_api_for_base`.
 
