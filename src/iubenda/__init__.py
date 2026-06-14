@@ -10,7 +10,9 @@ Package layout:
 """
 
 __version__ = "1.7.4"
-__version_info__ = tuple(int(i) if i.isdigit() else i for i in __version__.split("."))
+__version_info__ = tuple(
+    int(i) if i.isdigit() else i for i in __version__.split(".")
+)
 __license__ = "MIT"
 __title__ = "iubenda"
 

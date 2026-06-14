@@ -59,7 +59,10 @@ class AppConfigApiTests(SimpleTestCase):
 
 @override_settings(
     APP_CONFIG={
-        "iubenda": {"API_ALLOWED_LANGS": ("de", "fr"), "API_FALLBACK_LANG": "de"}
+        "iubenda": {
+            "API_ALLOWED_LANGS": ("de", "fr"),
+            "API_FALLBACK_LANG": "de",
+        }
     }
 )
 class AppConfigLangTests(SimpleTestCase):
@@ -74,7 +77,9 @@ class AppConfigLangTests(SimpleTestCase):
 )
 class AppConfigBaseUrlTests(SimpleTestCase):
     def test_empty_top_level_string_uses_app_config(self):
-        self.assertEqual(get_iubenda_api_base_url(), "https://config.example.test")
+        self.assertEqual(
+            get_iubenda_api_base_url(), "https://config.example.test"
+        )
 
 
 @override_settings(

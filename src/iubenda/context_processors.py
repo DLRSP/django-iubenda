@@ -37,7 +37,9 @@ def iubenda(request):
     if not context_cache or context_cache is None:
         try:
             context = {
-                "cx_iubenda": Iubenda.objects.filter(site=get_current_site(request))
+                "cx_iubenda": Iubenda.objects.filter(
+                    site=get_current_site(request)
+                )
                 .values("iub_site_id", "iub_policy_id")
                 .get(),
             }
@@ -56,7 +58,9 @@ def iubenda(request):
 
             cx_iubenda_autoblocking = get_iubenda_autoblocking()
             if cx_iubenda_autoblocking:
-                context.update({"cx_iubenda_autoblocking": cx_iubenda_autoblocking})
+                context.update(
+                    {"cx_iubenda_autoblocking": cx_iubenda_autoblocking}
+                )
 
             context_cache = cache.set(cache_key, context, timeout=86400)
             return context
