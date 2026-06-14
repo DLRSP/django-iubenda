@@ -15,9 +15,19 @@ dynamic = ["dependencies", "version"]
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-keywords = ["django", "iubenda", "privacy", "cookie"]
+keywords = [
+    "django",
+    "iubenda",
+    "privacy",
+    "cookie",
+    "gdpr",
+    "cookies",
+    "legal",
+    "compliance",
+]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
+  "Topic :: Office/Business :: Legal",
   "Environment :: Web Environment",
   "Framework :: Django",
   "Framework :: Django :: 3.2",
@@ -43,6 +53,10 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/DLRSP/django-iubenda"
+Documentation = "https://github.com/DLRSP/django-iubenda/"
+Repository = "https://github.com/DLRSP/django-iubenda"
+Issues = "https://github.com/DLRSP/django-iubenda/issues"
+Changelog = "https://github.com/DLRSP/django-iubenda/blob/main/CHANGELOG.rst"
 
 [project.optional-dependencies]
 testing = [
@@ -81,7 +95,6 @@ ignore = [
     "docs/community/third-party-packages.md",
     "docs/tutorial/customize.md",
 ]
-["AGENTS.md"]
 
 # Read by flake8 when flake8-pyproject is installed (extra `linting`).
 [tool.mypy]
