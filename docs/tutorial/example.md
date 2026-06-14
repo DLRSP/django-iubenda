@@ -12,7 +12,7 @@ python -m venv env
 source env/bin/activate
 # On Windows: env\Scripts\activate
 
-pip install -r requirements/py38-django32.txt
+pip install -r requirements/py39-django42.txt
 
 python manage.py migrate
 python manage.py runserver
