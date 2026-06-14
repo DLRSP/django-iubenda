@@ -1,8 +1,8 @@
 [build-system]
 requires = [
-  "setuptools >= 77; python_version >= '3.9'",
-  "setuptools >= 40.8.0; python_version < '3.9'",
-  "wheel",
+    "setuptools >= 77; python_version >= '3.9'",
+    "setuptools >= 40.8.0; python_version < '3.9'",
+    "wheel",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -13,30 +13,40 @@ authors = [
     { name = "DLRSP", email = "dlrsp.dev@gmail.com" },
 ]
 requires-python = ">=3.8"
-dynamic = ["dependencies", "version"]
+dynamic = [
+    "dependencies",
+    "version",
+]
 readme = "README.md"
 license = "MIT"
-license-files = ["LICENSE"]
-keywords = ["django", "iubenda", "privacy", "cookie"]
+license-files = [
+    "LICENSE",
+]
+keywords = [
+    "django",
+    "iubenda",
+    "privacy",
+    "cookie",
+]
 classifiers = [
-  "Development Status :: 5 - Production/Stable",
-  "Intended Audience :: Developers",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Framework :: Django",
-  "Framework :: Django :: 3.2",
-  "Framework :: Django :: 4.2",
-  "Environment :: Web Environment",
-  "Operating System :: OS Independent",
-  "Topic :: Internet :: WWW/HTTP",
-  "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
-  "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-  "Topic :: Software Development :: Libraries :: Application Frameworks",
-  "Topic :: Software Development :: Libraries",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4.2",
+    "Environment :: Web Environment",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries",
 ]
 
 [project.urls]
@@ -44,31 +54,40 @@ Homepage = "https://github.com/DLRSP/django-iubenda"
 
 [project.optional-dependencies]
 test = [
-  "coverage",
-  "codecov",
+    "coverage",
+    "codecov",
 ]
 lint = [
-  "black",
-  "flake8",
+    "black",
+    "flake8",
 ]
 
 [tool.setuptools]
-package-dir = { "" = "src" }
 include-package-data = true
 zip-safe = false
 
-[tool.setuptools.dynamic]
-dependencies = { file = "requirements/requirements.in" }
-version = { attr = "iubenda.__version__" }
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.dynamic.dependencies]
+file = "requirements/requirements.in"
+
+[tool.setuptools.dynamic.version]
+attr = "iubenda.__version__"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = [
+    "src",
+]
 
 [tool.distutils.bdist_wheel]
 universal = false
 
 [tool.black]
-target-version = ['py311']
+line-length = 80
+target-version = [
+    "py311",
+]
 
 [tool.isort]
 profile = "black"
@@ -83,64 +102,71 @@ no_implicit_optional = true
 show_error_codes = true
 warn_unreachable = true
 warn_unused_ignores = true
-
-[[tool.mypy.overrides]]
-module = "tests.*"
-allow_untyped_defs = true
+overrides = [
+    { module = "tests.*", allow_untyped_defs = true },
+]
 
 [tool.pytest.ini_options]
-addopts = """\
-    --strict-config
-    --strict-markers
-    --ds=tests.settings
-    """
+addopts = "--strict-config\n    --strict-markers\n    --ds=tests.settings\n    "
 django_find_project = false
 
 [tool.coverage.paths]
-source = ["src", ".tox/*/site-packages"]
+source = [
+    "src",
+    ".tox/*/site-packages",
+]
 
 [tool.coverage.run]
 branch = true
-source = ["iubenda"]
+source = [
+    "iubenda",
+]
 
 [tool.coverage.report]
 show_missing = true
 fail_under = 100
 
 [tool.flake8]
-max-line-length = 120
-exclude = [
-    ".git",
-    "__pycache__",
+max-line-length = 80
+select = [
+    "E",
+    "F",
+    "W",
+    "B",
+    "B950",
+    "C",
+    "I",
+    "TYP",
 ]
-extend-ignore = [
+ignore = [
     "E203",
     "E501",
     "W503",
+    "B950",
 ]
-count = true
+per-file-ignores = [
+    "**/migrations/*:B950",
+]
 
 [tool.towncrier]
 package = "iubenda"
 package_dir = "src"
 filename = "CHANGELOG.rst"
 directory = "news/"
-
 issue_format = "`#{issue} <https://github.com/DLRSP/django-iubenda/issues/{issue}>`_"
-
 type = [
-  { name = "Process", directory = "process", showcontent = true },
-  { name = "Deprecations and Removals", directory = "removal", showcontent = true },
-  { name = "Features", directory = "feature", showcontent = true },
-  { name = "Bug Fixes", directory = "bugfix", showcontent = true },
-  { name = "Vendored Libraries", directory = "vendor", showcontent = true },
-  { name = "Improved Documentation", directory = "doc", showcontent = true },
-  { name = "Trivial Changes", directory = "trivial", showcontent = false },
+    { name = "Process", directory = "process", showcontent = true },
+    { name = "Deprecations and Removals", directory = "removal", showcontent = true },
+    { name = "Features", directory = "feature", showcontent = true },
+    { name = "Bug Fixes", directory = "bugfix", showcontent = true },
+    { name = "Vendored Libraries", directory = "vendor", showcontent = true },
+    { name = "Improved Documentation", directory = "doc", showcontent = true },
+    { name = "Trivial Changes", directory = "trivial", showcontent = false },
 ]
 
 [tool.bumpversion]
 current_version = "1.7.4"
 allow_dirty = true
-
-[[tool.bumpversion.files]]
-filename = "./src/iubenda/__init__.py"
+files = [
+    { filename = "./src/iubenda/__init__.py" },
+]
