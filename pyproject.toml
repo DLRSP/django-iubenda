@@ -74,7 +74,7 @@ include-package-data = true
 zip-safe = false
 
 [tool.setuptools.dynamic]
-dependencies = { file = "requirements/requirements.in" }
+dependencies = { file = "requirements/runtime.in" }
 version = { attr = "iubenda.__version__" }
 
 [tool.setuptools.packages.find]
