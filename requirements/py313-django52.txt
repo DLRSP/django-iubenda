@@ -203,9 +203,9 @@ django-compressor==4.6.0 \
     --hash=sha256:6e7b21020a0d86272c5e37000c33accc4ebeb77394a3dd86d775a09aae7aade4 \
     --hash=sha256:c7478feab98f3368780591f9ee28a433350f5277dd28811f7f710f5bc6dff3c0
     # via -r requirements/runtime.in
-django-modeltranslation==0.20.5 \
-    --hash=sha256:7c7f81b1d0e3a9b27cd99c2484ffaa9334e1ae5ca277a2f350558d0943aee8d9 \
-    --hash=sha256:92ba590b10da73da6412039749bb3b38f8e13e0f8ebcd5663ea12781cd91b0d0
+django-modeltranslation==0.20.6 \
+    --hash=sha256:29eb584f017206a0bea5e2a44ae5da514ad6ebf1e43536ff7fed7df67b795b0c \
+    --hash=sha256:913658af75510a4f71573441f267b5831a6034c524f917f337adc666a60fe724
     # via -r requirements/runtime.in
 django-requests-api==0.6.10 \
     --hash=sha256:1d77459decb0b44144c393a23ac3292308e64a1d09f98df893a57c11da1cee83 \
