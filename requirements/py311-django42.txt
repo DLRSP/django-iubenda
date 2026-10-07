@@ -207,9 +207,9 @@ django-modeltranslation==0.19.17 \
     --hash=sha256:13bd9cab4e4aed0bef5624c17a7da2ac8c5538f0650adbd89ce8c878cbef02fd \
     --hash=sha256:fda198c08b4ede0c2fd09b795ab420a04c7b5a868315fdf4aade0d0a526c269f
     # via -r requirements/runtime.in
-django-requests-api==0.6.13 \
-    --hash=sha256:0301667220940d663f255c899c5d7f6b09403411d0afcfb6485bdeedf2e5d0f8 \
-    --hash=sha256:4e4e5cf0010f712bc95ae3dc32f9aba2bf0ad66479be9afeab5c8d0004499f3d
+django-requests-api==0.6.14 \
+    --hash=sha256:1f327e531c29ac8405aab2e7bd2a588bb1c8d6f55e20e9ed49901209fee4dc2b \
+    --hash=sha256:cd46d7fa0869e28aebff28eb99843bffa4c2abf0e03a43477f09494ea156cb09
     # via -r requirements/runtime.in
 idna==3.20 \
     --hash=sha256:a7db850025b95ded1eae8a46181a1a6c56c92c96f0e2b005d9ff8dc0210cab44 \
